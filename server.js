@@ -1,9 +1,13 @@
 const express = require("express");
 const Rutas = require("./rutas");
+const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
 const app = express();
 
 //use
-//app.use(express.static("html"))
+app.use(express.static("html"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(favicon(__dirname+"/html/IMG/redbull-icon.png"))
 
 //Rutas
 Rutas.RGET(app);

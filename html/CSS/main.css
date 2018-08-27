@@ -1,3 +1,9 @@
 .foto_contenedor{
     height: 12rem;
 }
+.foto_contenedor{
+    background-image: url("../IMG/charging-bull-on-wall.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
