@@ -1,0 +1,8 @@
+header .mdl-menu__container{
+    margin-right: 36px
+}
+@media only screen and (max-width: 1024px){
+    header .mdl-menu__container{
+        margin-right: 26px
+    }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "charging_bull4",
+  "version": "1.0.0",
+  "description": "nuevo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joseluis244/charging_bull4.git"
+  },
+  "author": "Jose Luis Camacho Moreno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joseluis244/charging_bull4/issues"
+  },
+  "homepage": "https://github.com/joseluis244/charging_bull4#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
