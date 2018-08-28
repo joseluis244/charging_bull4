@@ -10,19 +10,21 @@ function RGET (app) {
 }
 function RPOST(app) {
     app.post("/dash", function (req, res) {
-        switch(req.body.data){
-            case "1": 
-            res.send([1,2,3,4,5])
-            break;
-            case "2": 
-            res.send([6,7,8,9,0])
-            break;
-            case "3": 
-            res.send({lab:["a","b","c","d","e"],valor:[4,5,6,7,8]})
-            break;
-        }
-        
+        res.send(datos(req.body.data))
     })
 }
 module.exports.RGET = RGET;
 module.exports.RPOST = RPOST;
+function datos(dato){
+    switch(dato){
+        case "1": 
+        var a = [1,2,3,4,5];
+        return a;
+        case "2": 
+        var b = [6,7,8,9,0];
+        return b;
+        case "3": 
+        var c = {lab:["a","b","c","d","e"],valor:[4,5,6,7,8]};
+        return c;
+    }
+}

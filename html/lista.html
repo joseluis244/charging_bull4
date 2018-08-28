@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout">
+      <main class="mdl-layout__content">
+            <div><input type="text" id="buscador" style="height: 0.1px; width: 0px" onkeyup="escribir()"><label for="buscador" id="aaas">buscar</label></div>
+            <button onclick="alert(document.getElementById('buscador').value)">aa</button>
+            <ul class="mdl-list">
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        Bryan Cranston
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        Aaron Paul
+                    </span>
+                </li>
+                <li class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        Bob Odenkirk
+                    </span>
+                </li>
+            </ul>
+        
+      </main>
+    </div>
+    <script>
+    function escribir(){
+        var letras = document.getElementById('buscador').value
+        var eti = document.getElementById('aaas')
+        eti.innerHTML = letras;
+        if(letras == ""){
+            eti.innerHTML = "Buscar";
+        }
+    }
+    </script>
+  </body>
+</html>

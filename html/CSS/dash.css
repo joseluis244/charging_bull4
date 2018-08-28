@@ -2,3 +2,10 @@
     display: flex;
     justify-content: center;
 }
+thead{
+    background-color: #303F9F;
+}
+tr .head{
+    color: white;
+    font-size: 15px;
+}
