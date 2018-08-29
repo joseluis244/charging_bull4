@@ -1,4 +1,23 @@
 const op1 = {
+    legend: { display: false },
+    title: {
+        display: true,
+        text: 'precio Moda'
+    },
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+    }
+}
+const op2 = {
+    legend: { display: false },
+    title: {
+        display: true,
+        text: 'Precencia'
+    },
     scales: {
         yAxes: [{
             ticks: {
@@ -14,7 +33,7 @@ var data1 = $.post("/dash", { data: "1" }, function (e) {
         data: {
             labels: ["Red", "Blue", "Yellow", "Green", "Purple"],
             datasets: [{
-                label: '# of Votes',
+                label: 'Precio',
                 data: e,
                 backgroundColor: [
                     'rgb(255, 99, 132)',
@@ -36,7 +55,7 @@ var data2 = $.post("/dash",{data:"2"},function(e){
         data: {
             labels: ["Red", "Blue", "Yellow", "Green", "Purple"],
             datasets: [{
-                label: '# of Votes',
+                label: '# de clientes',
                 data: e,
                 backgroundColor: [
                     'rgb(255, 99, 132)',
@@ -48,7 +67,7 @@ var data2 = $.post("/dash",{data:"2"},function(e){
                 borderWidth: 1
             }]
         },
-        options: op1
+        options: op2
     });
 });
 var data3 = $.post("/dash",{data:"3"},function(e){
@@ -68,6 +87,13 @@ var data3 = $.post("/dash",{data:"3"},function(e){
                 ],
                 borderWidth: 1
             }]
+        },
+        options:{
+            legend: { display: true },
+            title: {
+                display: true,
+                text: 'Precencia'
+            }
         }
     });
 });
