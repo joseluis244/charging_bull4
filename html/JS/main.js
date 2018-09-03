@@ -1,4 +1,6 @@
 if(navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone|iPad|iPod/i)){
     document.getElementsByClassName("mainheadermenu")[0].style.display = "none"
 }
-$("main").load("lista.html")
+$("main").load("lista.html",function(){
+    console.log("Cargado")
+})

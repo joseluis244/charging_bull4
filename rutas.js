@@ -7,6 +7,9 @@ function RGET (app) {
         
         res.sendfile("html/dash.html");
     })
+    app.get("/lista",function(req,res){
+        res.sendfile("html/lista.html");
+    })
 }
 function RPOST(app) {
     app.post("/dash", function (req, res) {

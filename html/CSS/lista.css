@@ -4,10 +4,12 @@
 .buscador{
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: -5px;
+    padding-top: 15px;
     position: fixed;
     left: 0px;
     right: 0px;
+    background-color: white;
 }
 .buscador input{
     border: 2px solid lightgray;
@@ -30,6 +32,12 @@
 }
 .mdl-list{
     margin-top: 50px;
+    margin-bottom: 80px;
+}
+.buscar_alrededor{
+    position: fixed;
+    bottom: 15px;
+    right: 25px;
 }
 @media only screen and (min-width: 1025px){
     .buscador{
