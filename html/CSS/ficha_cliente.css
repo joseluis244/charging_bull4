@@ -1,0 +1,124 @@
+.contenedor{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: grid;
+    grid-template-rows: 60px 225px auto;
+}
+header{
+    background-color: #3f51b5;
+    height: 325px;
+    display: grid;
+    grid-template-rows: 60px 225px 40px;
+    color: white;
+}
+header .titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header .nav_menu{
+    display: flex;
+    justify-content: center;
+}
+header .nav_menu .nav_item{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 3px solid #3f51b5;
+}
+.drawer .Foto{
+    background-image: url("../IMG/Modern-city-building-design-vector-material-02.jpg");
+    height: 225px;
+    display: flex;
+    align-items: flex-end;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.drawer .Foto .info_cli{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    background-color: #0000006b;
+    color: white;
+}
+.drawer .cli_datos{
+    display: none;
+    background-color: white;
+    height: 100%;
+    z-index: 2;
+}
+main{
+    margin-top: 40px;
+    z-index: -1;
+}
+main #Visitas{
+    display: none;
+}
+main #Galeria{
+    display: none;
+}
+#add_btn{
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+}
+@media screen and (min-width: 500px){
+    .drawer .Foto .info_cli{
+        display: none;
+    }
+    .drawer .cli_datos{
+        display: block;
+        overflow-y: auto;
+    }
+    .drawer{
+        display: grid;
+        grid-template-rows: 225px;
+        grid-template-columns: 250px auto;
+    }
+}
+@media screen and (min-width: 850px){
+    .contenedor{
+        grid-template-columns: 300px auto;
+        grid-template-rows: 60px auto;
+    }
+    header{
+        height: 60px;
+        grid-column: 1/3;
+        display: flex;
+        align-items: center;
+        box-shadow: 0px 3px 8px #cccccc;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    header .titulo{
+        justify-content: left;
+        align-items: center;
+    }
+    header .separador{
+        width: 100%;
+    }    
+    header .nav_menu .nav_item{
+        height: 37px;
+        display: flex;
+        align-items: center;
+        width: 70px;
+        justify-content: center;
+    }
+    .drawer{
+        display: block;
+        box-shadow: 0px 3px 8px #cccccc;
+    }
+    .drawer .cli_datos{
+        height: auto;
+    }
+    main{
+        margin-top: 0px;
+        overflow-y: auto;
+    }
+
+}
