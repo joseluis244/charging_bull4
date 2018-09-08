@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <form enctype="multipart/form-data" method="post" id="qq">
+        <input type="file" name="ss">
+        <input type="submit">
+        <span id="as"></span>
+    </form>
+    <script>
+        var files
+        $('input[type=file]').on('change', function (e) {
+            files = e.target.files;
+            console.log(files)
+        });
+        $('form').on('submit', function (event) {
+            event.preventDefault(); // Totally stop stuff happening
+            var data = new FormData();
+            $.each(files, function (key, value) {
+                data.append(key, value);
+            });
+            $.ajax({
+                url: '/',
+                type: 'POST',
+                data: data,
+                cache: false,
+                dataType: 'html',
+                processData: false, // Don't process the files
+                contentType: false
+            }).done(function(e){
+                location.reload();
+            })
+        });
+    </script>
+</body>
+</html>
