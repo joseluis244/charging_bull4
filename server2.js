@@ -1,20 +1,24 @@
 const express = require("express");
-const formidable = require("formidable");
+const multer = require("multer");
+const upload = multer({dest: './upload/'});
+const fs = require("fs");
 const app = express();
-var form = new formidable.IncomingForm();
+/*var form = new formidable.IncomingForm();
 form.uploadDir = "./upload";
-form.keepExtensions = true;
+form.keepExtensions = true;*/
 app.get("/",function(req,res){
     res.sendfile("a.html");
 })
-app.post("/",function(req,res){
-    form.parse(req,function(err,fields, files){
-        console.log(fields)
-        console.log(files)
-        res.status(200)
-        res.send("asd")
-    })
+app.post("/",upload.single("ss"),function(req,res,next){
+    fs.rename(req.file.path,renombre(req.file),function(){})
+    res.send("asd")
 })
 app.listen(3000,function(){
     console.log("inicio")
 })
+function renombre (a){
+    switch (a.mimetype){
+        case "image/jpeg":
+            return a.path+".jpg";
+    }
+}

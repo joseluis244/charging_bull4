@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-    <form enctype="multipart/form-data" method="post" id="qq">
+    <form enctype="multipart/form-data" method="post">
         <input type="file" name="ss">
         <input type="submit">
         <span id="as"></span>
@@ -17,14 +17,11 @@
         var files
         $('input[type=file]').on('change', function (e) {
             files = e.target.files;
-            console.log(files)
         });
         $('form').on('submit', function (event) {
             event.preventDefault(); // Totally stop stuff happening
             var data = new FormData();
-            $.each(files, function (key, value) {
-                data.append(key, value);
-            });
+            data.append("ss", files[0]);
             $.ajax({
                 url: '/',
                 type: 'POST',
@@ -34,7 +31,7 @@
                 processData: false, // Don't process the files
                 contentType: false
             }).done(function(e){
-                location.reload();
+                console.log(e)
             })
         });
     </script>
