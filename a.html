@@ -9,14 +9,33 @@
 </head>
 <body>
     <form enctype="multipart/form-data" method="post">
-        <input type="file" name="ss" accept="image/*">
+        <input type="file" name="ss">
         <input type="submit">
         <span id="as"></span>
+        <canvas id="myCanvas" width="150" height="150" style="transform: rotate(90deg)">
+        </canvas>
+        <img src="" alt="" id="sss">
     </form>
     <script>
         var files
+        var canvas = document.getElementById("myCanvas")
+        var ctx = canvas.getContext("2d");
+        var fr = new FileReader();
+        var img = new Image();
+        canvas.width=300
+        canvas.height=234
         $('input[type=file]').on('change', function (e) {
             files = e.target.files;
+            console.log(files[0])
+            fr.readAsDataURL(files[0]);
+            fr.onload = function () {
+                img.src = fr.result;
+                ctx.drawImage(img,0,0,300, 234);
+                var url = canvas.toDataURL();
+                var ffile = dataURItoBlob(url);
+                console.log(url)
+                console.log(ffile);
+            }
         });
         $('form').on('submit', function (event) {
             event.preventDefault(); // Totally stop stuff happening
@@ -30,7 +49,7 @@
                 dataType: 'html',
                 processData: false, // Don't process the files
                 contentType: false
-            }).done(function(e){
+            }).done(function (e) {
                 console.log(e)
             })
         });

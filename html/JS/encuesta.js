@@ -78,3 +78,8 @@ function asignarvisibility(este,pos){
 function escribircomentario(este){
     V_comentario = este.value;
 }
+function subir_foto(){
+    document.getElementById("uploadok").getElementsByTagName("i")[0].innerHTML = "cloud_upload";
+    document.getElementById("mensajes_foto").getElementsByTagName("span")[0].innerHTML = `Subiendo`;
+    document.getElementById("mensajes_foto").getElementsByClassName("mdl-spinner")[0].style.display = "block";
+}

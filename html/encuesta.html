@@ -22,7 +22,7 @@
             <span><h5 style="margin-top: 15px">Encuesta</h5></span>
         </header>
         <main>
-            <div id="pagina-1">
+            <div id="pagina-1" style="display: none">
                 <div class="seccion seccion_principal">
                     <div class="titulo">Vende energizante</div>
                     <div class="contenido">
@@ -284,8 +284,34 @@
                     </button>
                 </div>
             </div>
-            <div id="pagina-2">
-                asd
+            <div id="pagina-2" style="display: flex" >
+                <div class="foto">
+                    <div id="uploadok" class="uploadok mdl-shadow--8dp">
+                        <i class="material-icons" style="font-size: 90px;">
+                            done
+                        </i>
+                    </div>
+                    <div style="margin-bottom: 10px" id="contenedor_camara">
+                        <input type="file" name="foto" accept="image/*" capture="camera" id="imagen">
+                        <label for="imagen" id="lab_foto" class="mdl-shadow--8dp">
+                            <i class="material-icons" style="font-size: 90px">
+                                camera_alt
+                            </i>
+                        </label>
+                    </div>
+                    <div id="mensajes_foto">
+                        <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none"></div>
+                        <span>Tomar una foto</span>
+                    </div>
+                    <div id="botones_foto">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--red-900">
+                            Sin Foto
+                        </button>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="display: none" onclick="subir_foto()">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
             </div>
         </main>
         <script src="./JS/encuesta2.js"></script>
