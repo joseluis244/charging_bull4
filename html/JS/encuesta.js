@@ -21,7 +21,7 @@ function distribuidor(este){
     if(este.value != "otro"){
         nombre_distribuidor = este.value;
         document.getElementById("nombre_distribuidor_nuevo").style.display = "none";
-        este.style.borderBottomColor = "#3f51b5";
+        este.style.borderBottomColor = "#031e3c";
     }
     else{
         nombre_distribuidor = "";
@@ -35,7 +35,7 @@ function distribuidor1(este){
 function asignar_precio(pos,valor,este){
     var selector = este.getAttribute("name");
     b_precios[pos] = valor;
-    $("[name="+selector+"]").css("background-color","#3f51b5")
+    $("[name="+selector+"]").css("background-color","#031e3c")
     este.style.backgroundColor = "#b71c1c";
     if(valor<0){
         este.parentElement.parentElement.getElementsByTagName("div")[2].style.display = "flex";
@@ -50,9 +50,11 @@ function asignar_precio1(pos,este){
 function frio(este){
     if(este.checked){
         vende_frio = "si";
+        document.getElementById("frio_lab").innerHTML = "Si";
     }
     else{
         vende_frio = "no";
+        document.getElementById("frio_lab").innerHTML = "No";
     }
 }
 function asignarcooler(este,pos){
@@ -78,8 +80,13 @@ function asignarvisibility(este,pos){
 function escribircomentario(este){
     V_comentario = este.value;
 }
-function subir_foto(){
+function subir_foto(este){
     document.getElementById("uploadok").getElementsByTagName("i")[0].innerHTML = "cloud_upload";
     document.getElementById("mensajes_foto").getElementsByTagName("span")[0].innerHTML = `Subiendo`;
-    document.getElementById("mensajes_foto").getElementsByClassName("mdl-spinner")[0].style.display = "block";
+    document.getElementById("mensajes_foto").getElementsByClassName("mdl-spinner")[0].style.display = "inline-block";
+    /*jic.upload(img_tar, server_endpoint, server_var_name, filename, function (res) {
+        console.log(res);
+    })*/
+    este.disabled = "true"
+    console.log("Subiendo")
 }

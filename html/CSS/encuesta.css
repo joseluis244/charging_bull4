@@ -21,26 +21,27 @@
 }
 select{
     border: none;
-    border-bottom: 2px solid #3f51b5;
+    border-bottom: 2px solid #031e3c;
     font-size: 15px;
     padding: 2px;
     -webkit-appearance: none;
+    border-radius: 0px;
 }
 input:focus, select:focus, textarea:focus{
     outline: none;
 }
 input{
     border: none;
-    border-bottom: 2px solid #3f51b5;
+    border-bottom: 2px solid #031e3c;
     font-size: 15px;
 }
 textarea{
     border: none;
-    border-bottom: 2px solid #3f51b5;
+    border-bottom: 2px solid #031e3c;
     font-size: 15px;
 }
 header{
-    background-color: #3f51b5;
+    background-color: #031e3c;
     color: white;
     display: flex;
     align-items: center;
@@ -93,7 +94,7 @@ main .seccion .contenido .bebida .valor{
     width: 90px;
     height: 40px;
     display: flex;
-    background-color: #3f51b5;
+    background-color: #031e3c;
     color: white;
     margin-top: 5px;
     justify-content: center;
@@ -128,7 +129,7 @@ main .lista_visibility > span{
 #lab_foto{
     width: 200px;
     height: 200px;
-    background-color: #b71c1c;
+    background-color: #a02c2e;
     display: flex;
     align-items: center;
     justify-content: center;

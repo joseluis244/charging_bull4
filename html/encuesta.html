@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="./CSS/MDL.css">
     <link rel="stylesheet" href="./CSS/encuesta.css">
     <title>Encuesta</title>
 </head>
 <body>
     <div class="contenedor">
         <header>
-            <span style="margin-right: 10px; cursor: pointer;">
+            <span style="margin-right: 10px; cursor: pointer;" onclick="window.history.back()">
                 <i class="material-icons">
                     chevron_left
                 </i>
@@ -22,7 +23,7 @@
             <span><h5 style="margin-top: 15px">Encuesta</h5></span>
         </header>
         <main>
-            <div id="pagina-1" style="display: none">
+            <div id="pagina-1">
                 <div class="seccion seccion_principal">
                     <div class="titulo">Vende energizante</div>
                     <div class="contenido">
@@ -284,7 +285,7 @@
                     </button>
                 </div>
             </div>
-            <div id="pagina-2" style="display: flex" >
+            <div id="pagina-2" style="display: none" >
                 <div class="foto">
                     <div id="uploadok" class="uploadok mdl-shadow--8dp">
                         <i class="material-icons" style="font-size: 90px;">
@@ -301,13 +302,13 @@
                     </div>
                     <div id="mensajes_foto">
                         <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="display: none"></div>
-                        <span>Tomar una foto</span>
+                        <span>Tomar Foto</span>
                     </div>
                     <div id="botones_foto">
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--red-900">
                             Sin Foto
                         </button>
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="display: none" onclick="subir_foto()">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="display: none" onclick="subir_foto(this)">
                             Guardar
                         </button>
                     </div>

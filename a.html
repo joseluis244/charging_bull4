@@ -6,53 +6,43 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="node_modules/j-i-c/src/JIC.js"></script>
 </head>
 <body>
-    <form enctype="multipart/form-data" method="post">
-        <input type="file" name="ss">
-        <input type="submit">
+        <input type="file" name="ss" accept="image/*">
         <span id="as"></span>
-        <canvas id="myCanvas" width="150" height="150" style="transform: rotate(90deg)">
-        </canvas>
-        <img src="" alt="" id="sss">
-    </form>
+    <button onclick="envio()">aa</button>
     <script>
         var files
-        var canvas = document.getElementById("myCanvas")
-        var ctx = canvas.getContext("2d");
         var fr = new FileReader();
         var img = new Image();
-        canvas.width=300
-        canvas.height=234
+        var img_tar = new Image();
+        var calidad = 50;
+        var formato = "jpg";
+        var server_endpoint = '/',
+            server_var_name = 'ss',
+            filename = "new.jpg";
         $('input[type=file]').on('change', function (e) {
             files = e.target.files;
-            console.log(files[0])
             fr.readAsDataURL(files[0]);
             fr.onload = function () {
                 img.src = fr.result;
-                ctx.drawImage(img,0,0,300, 234);
-                var url = canvas.toDataURL();
-                var ffile = dataURItoBlob(url);
-                console.log(url)
-                console.log(ffile);
+                setTimeout(function () {
+                    img_tar.src = jic.compress(img, calidad, formato).src;
+                }, 1000)
+
             }
         });
-        $('form').on('submit', function (event) {
-            event.preventDefault(); // Totally stop stuff happening
-            var data = new FormData();
-            data.append("ss", files[0]);
-            $.ajax({
-                url: '/',
-                type: 'POST',
-                data: data,
-                cache: false,
-                dataType: 'html',
-                processData: false, // Don't process the files
-                contentType: false
-            }).done(function (e) {
-                console.log(e)
-            })
-        });
+        function envio() {
+            jic.upload(img_tar, server_endpoint, server_var_name, filename, function (res) {
+                if (res) {
+                    document.getElementById("as").innerHTML = res;
+                }
+                else {
+                    document.getElementById("as").innerHTML = "error";
+                }
+            });
+        }
     </script>
 </body>
 </html>

@@ -1,6 +1,28 @@
 header .mdl-menu__container{
     margin-right: 36px
 }
+.mdl-layout__header{
+    background-color: #031e3c
+}
+.mdl-button--raised.mdl-button--colored{
+    background: #031e3c;
+}
+.mdl-button--raised.mdl-button--colored:hover{
+    background: #042850;
+    box-shadow: 0px 2px 8px #031e3c;
+}
+.mdl-switch.is-checked .mdl-switch__thumb{
+    background: #031e3c;
+}
+.mdl-switch.is-checked .mdl-switch__track{
+    background: #031e3c91;
+}
+.mdl-checkbox.is-checked .mdl-checkbox__tick-outline{
+    background: #031e3c;
+}
+.mdl-checkbox.is-checked .mdl-checkbox__box-outline{
+    border-color: #031e3c;
+}
 @media only screen and (max-width: 1024px){
     header .mdl-menu__container{
         margin-right: 26px

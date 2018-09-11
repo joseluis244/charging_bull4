@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0px;
+        }
+        .img_cont{
+            width: 400px;
+            height: 400px;
+            background-color: aqua;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img_cont img{
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="img_cont">
+        <img src="./upload/upload_720b0a28e7340665e42c6ffa3d374510.jpg" alt="" id="img_rot">
+    </div>
+    <div onclick="rot(90)">a</div>
+    <div onclick="rot(-90)">b</div>
+    <script>
+        if(screen.width < 450)
+        {
+            console.log(screen.width)
+            document.getElementsByClassName("img_cont")[0].style.width = screen.width+"px";
+            document.getElementsByClassName("img_cont")[0].style.height = screen.width+"px";
+        }
+        var rota = 0;
+        function rot(val){
+            rota = rota + val;
+            document.getElementsByClassName("img_cont")[0].getElementsByTagName("img")[0].style.transform = "rotate("+rota+"deg)"
+        }
+    </script>
+</body>
+</html>

@@ -6,6 +6,9 @@ const app = express();
 /*var form = new formidable.IncomingForm();
 form.uploadDir = "./upload";
 form.keepExtensions = true;*/
+app.get("/node_modules/j-i-c/src/JIC.js",function(req,res){
+    res.sendfile("node_modules/j-i-c/src/JIC.js");
+})
 app.get("/",function(req,res){
     res.sendfile("a.html");
 })
