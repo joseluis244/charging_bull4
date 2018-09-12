@@ -20,9 +20,5 @@ app.listen(3000,function(){
     console.log("inicio")
 })
 function renombre (a){
-    /*switch (a.mimetype){
-        case "image/jpeg":
-            return a.path+".jpg";
-    }*/
     return a.path+".jpg";
 }

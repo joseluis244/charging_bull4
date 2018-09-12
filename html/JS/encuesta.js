@@ -80,13 +80,23 @@ function asignarvisibility(este,pos){
 function escribircomentario(este){
     V_comentario = este.value;
 }
+function guardar_datos(){
+    datos = [fecha,distribuye,nombre_distribuidor,vende_frio,V_comentario,GPS].toString();
+    coolers = lista_cooler.toString();
+    visib = lista_visibility.toString();
+    $.post("/encuesta",{datos:datos,coolers:coolers,visib:visib},function(data){
+
+    })
+}
 function subir_foto(este){
     document.getElementById("uploadok").getElementsByTagName("i")[0].innerHTML = "cloud_upload";
     document.getElementById("mensajes_foto").getElementsByTagName("span")[0].innerHTML = `Subiendo`;
     document.getElementById("mensajes_foto").getElementsByClassName("mdl-spinner")[0].style.display = "inline-block";
-    /*jic.upload(img_tar, server_endpoint, server_var_name, filename, function (res) {
-        console.log(res);
-    })*/
+    jic.upload(img_tar, "/foto", "foto", "new.jpg", function (res) {
+        if(res == "asd"){
+            location.href = "/"
+        }
+    })
     este.disabled = "true"
     console.log("Subiendo")
 }

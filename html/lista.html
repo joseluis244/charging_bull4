@@ -17,85 +17,88 @@
                 search
             </i>
         </span>
-        <input type="text" onkeyup="buscar(this.value)">
+        <input type="text" onkeyup="buscar(this.value)" placeholder="Buscar">
     </div>
-    <ul class="mdl-list" id="lista_clientes">
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Bryan Cranston
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Aaron Paul
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Bob Odenkirk
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Bryan Cranston
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Aaron Paul
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Bob Odenkirk
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Bryan Cranston
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Aaron Paul
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Bob Odenkirk
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Bryan Cranston
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Aaron Paul
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Bob Odenkirk
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Bryan Cranston
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Aaron Paul
-            </span>
-        </li>
-        <li class="mdl-list__item lista_borde">
-            <span class="mdl-list__item-primary-content">
-                Bob Odenkirk
-            </span>
-        </li>
-    </ul>
+    <div id="Lista_clientes">
+        <ul class="mdl-list" id="lista_clientes">
+            <li class="mdl-list__item lista_borde" onclick="vercliente(this)">
+                <span class="mdl-list__item-primary-content">
+                    Bryan Cranston
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Aaron Paul
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Bob Odenkirk
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Bryan Cranston
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Aaron Paul
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Bob Odenkirk
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Bryan Cranston
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Aaron Paul
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Bob Odenkirk
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Bryan Cranston
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Aaron Paul
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Bob Odenkirk
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Bryan Cranston
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Aaron Paul
+                </span>
+            </li>
+            <li class="mdl-list__item lista_borde">
+                <span class="mdl-list__item-primary-content">
+                    Bob Odenkirk
+                </span>
+            </li>
+        </ul>
+    
+    </div>
     <div class="buscar_alrededor">
         <button class="mdl-color--red-900 mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" onclick="buscar_alrededor_fun()">
             <i class="material-icons">gps_off</i>

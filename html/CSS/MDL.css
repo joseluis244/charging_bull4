@@ -23,6 +23,9 @@ header .mdl-menu__container{
 .mdl-checkbox.is-checked .mdl-checkbox__box-outline{
     border-color: #031e3c;
 }
+.mdl-spinner--single-color .mdl-spinner__layer{
+    border-color: #031e3c;
+}
 @media only screen and (max-width: 1024px){
     header .mdl-menu__container{
         margin-right: 26px

@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="./CSS/MDL.css">
     <link rel="stylesheet" href="./CSS/encuesta.css">
+    <script src="../node_modules/j-i-c/src/JIC.js"></script>
     <title>Encuesta</title>
 </head>
 <body>
@@ -280,7 +281,7 @@
                     </div>
                 </div>
                 <div id="botonera_encuesta" style="display: grid; padding-left: 20px; padding-right: 20px; margin-bottom: 20px">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="boton_encuesta">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="boton_encuesta" onclick="guardar_datos()" disabled>
                         Siguiente
                     </button>
                 </div>

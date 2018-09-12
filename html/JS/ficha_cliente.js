@@ -9,3 +9,4 @@ $(".nav_item").click(function(){
 function nueva_encuesta(){
     document.location.href = "./encuesta.html"
 }
+$("#Galeria").load("./galeria.html")
