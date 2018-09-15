@@ -10,22 +10,23 @@
 <body>
     <div id="main_contenedor">
         
-        <div class="contenedor_img mdl-shadow--2dp">
-            <div class="V_img">
-                <div class="rot_AH" onclick="rot_img(-90,this)">
+        <div class="contenedor_img">
+            <div class="imgen">
+                <div class="giro" onclick="rot_img(-90,this)">
                     <i class="material-icons">
                         rotate_left
                     </i>
                 </div>
-                <img src="../upload/upload_720b0a28e7340665e42c6ffa3d374510.jpg" alt="">
-                <div class="rot_SH" onclick="rot_img(90,this)">
+                <div class="imagen_ver"><img src="../upload/upload_720b0a28e7340665e42c6ffa3d374510.jpg" alt=""></div>
+                <div class="giro"onclick="rot_img(90,this)">
                     <i class="material-icons">
                         rotate_right
                     </i>
                 </div>
             </div>
-            <div class="V_datos">fecha</div>
+            <div class="info">dd/mm/yyyy</div>
         </div>
+
 
     </div>
     <script src="./JS/galeria.js"></script>

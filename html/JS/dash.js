@@ -31,16 +31,16 @@ var data1 = $.post("/dash", { data: "1" }, function (e) {
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple"],
+            labels: ["Red Bull", "Rush", "Ciclon 500ml", "Black", "Monster"],
             datasets: [{
                 label: 'Precio',
                 data: e,
                 backgroundColor: [
                     'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',
-                    'rgb(255, 206, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(153, 102, 255)'
+                    '#7E57C2',
+                    '#37474F',
+                    '#43A047'
                 ],
                 borderWidth: 1
             }]
@@ -53,16 +53,16 @@ var data2 = $.post("/dash",{data:"2"},function(e){
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple"],
+            labels: ["Red Bull", "Rush", "Ciclon 500ml", "Black", "Monster"],
             datasets: [{
                 label: '# de clientes',
                 data: e,
                 backgroundColor: [
                     'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',
-                    'rgb(255, 206, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(153, 102, 255)'
+                    '#7E57C2',
+                    '#37474F',
+                    '#43A047'
                 ],
                 borderWidth: 1
             }]
