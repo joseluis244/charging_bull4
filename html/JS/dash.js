@@ -27,6 +27,7 @@ const op2 = {
     }
 }
 var data1 = $.post("/dash", { data: "1" }, function (e) {
+
     var ctx = document.getElementById("myChart1").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
@@ -47,6 +48,7 @@ var data1 = $.post("/dash", { data: "1" }, function (e) {
         },
         options: op1
     });
+
 });
 var data2 = $.post("/dash",{data:"2"},function(e){
     var ctx = document.getElementById("myChart2").getContext('2d');
@@ -71,6 +73,7 @@ var data2 = $.post("/dash",{data:"2"},function(e){
     });
 });
 var data3 = $.post("/dash",{data:"3"},function(e){
+    console.log(e)
     var ctx = document.getElementById("myChart3").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'doughnut',
@@ -83,7 +86,10 @@ var data3 = $.post("/dash",{data:"3"},function(e){
                     'rgb(54, 162, 235)',
                     'rgb(255, 206, 86)',
                     'rgb(75, 192, 192)',
-                    'rgb(153, 102, 255)'
+                    'rgb(153, 102, 255)',
+                    "#004D40",
+                    "#FF6D00",
+                    "#00C853"
                 ],
                 borderWidth: 1
             }]
@@ -97,3 +103,9 @@ var data3 = $.post("/dash",{data:"3"},function(e){
         }
     });
 });
+var data4 = $.post("/dash",{data:"4"},function(e){
+    var data_G = document.getElementsByClassName("valor1");
+    data_G[0].innerHTML = e[0];
+    data_G[1].innerHTML = e[1];
+    data_G[2].innerHTML = e[2];
+})
