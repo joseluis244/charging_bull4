@@ -39,6 +39,7 @@ function RGET (app) {
     })
 }
 function RPOST(app) {
+
     app.post("/dash", function (req, res) {
         if (req.body.data == "1") {
             dashm.moda(function (moda,cantidad) {
@@ -70,6 +71,11 @@ function RPOST(app) {
                 res.send(e)
             })
         }
+    })
+    app.get("/mapaclu",function(req,res){
+        clientes.find({ "distribuye": true },{ "GPS": 1, "tipo": 1},{sort:{"tipo":1}},function(err,cli){
+            res.render("mapcluster.ejs",{cli:cli});
+        })
     })
     app.post("/foto",upload.single("foto"),function(req,res,next){
         fs.rename(req.file.path,renombre(req.file))

@@ -12,6 +12,7 @@ mongoose.connect(mongoDB,{ useNewUrlParser: true });
 app.use("/",express.static("html"));
 app.use("/upload",express.static("upload"));
 app.use("/node_modules",express.static("node_modules"));
+app.use("/cluster",express.static("cluster"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(favicon(__dirname+"/html/IMG/redbull-icon.png"));
 app.set('view engine', 'ejs');
