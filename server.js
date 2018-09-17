@@ -2,10 +2,12 @@ const express = require("express");
 const Rutas = require("./rutas");
 const bodyParser = require('body-parser');
 const favicon = require('express-favicon');
+const fs = require("fs");
 const app = express();
 const mongoose = require("mongoose");
-var mongoDB = 'mongodb://127.0.0.1/RB2';
-mongoose.connect(mongoDB);
+const conf = JSON.parse(fs.readFileSync("./configuraciones/conf.json"));
+var mongoDB = conf.DB;
+mongoose.connect(mongoDB,{ useNewUrlParser: true });
 //use
 app.use("/",express.static("html"));
 app.use("/upload",express.static("upload"));

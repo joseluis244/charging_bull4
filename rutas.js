@@ -42,13 +42,11 @@ function RPOST(app) {
     app.post("/dash", function (req, res) {
         if (req.body.data == "1") {
             dashm.moda(function (moda,cantidad) {
-                
                 res.send(moda);
             })
         }
         if (req.body.data == "2") {
             dashm.moda(function (moda,cantidad) {
-                
                 res.send(cantidad);
             })
         }

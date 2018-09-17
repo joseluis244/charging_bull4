@@ -84,34 +84,34 @@ var distribuidor = function(callback){
 }
 var cant_cooler = function (callback) {
     var coolers = [];
-    Cli.count({ "distribuye": true, "materiales.0.L_material": /.*Propio.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.0.L_material": /.*Propio.*/i }, function (err, co) {
         coolers[0] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.0.L_material": /.*Baby Cooler.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.0.L_material": /.*Baby Cooler.*/i }, function (err, co) {
         coolers[1] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.0.L_material": /.*Slim Cooler.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.0.L_material": /.*Slim Cooler.*/i }, function (err, co) {
         coolers[2] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.0.L_material": /.*Can Cooler.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.0.L_material": /.*Can Cooler.*/i }, function (err, co) {
         coolers[3] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.0.L_material": /.*Equipo de la competencia.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.0.L_material": /.*Equipo de la competencia.*/i }, function (err, co) {
         coolers[4] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.0.L_material": /.*Fast Lane Open.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.0.L_material": /.*Fast Lane Open.*/i }, function (err, co) {
         coolers[5] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.0.L_material": /.*Small Open Front.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.0.L_material": /.*Small Open Front.*/i }, function (err, co) {
         coolers[6] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.0.L_material": /.*Mega Glass Door.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.0.L_material": /.*Mega Glass Door.*/i }, function (err, co) {
         coolers[7] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.0.L_material": /.*Slim Fast Lane.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.0.L_material": /.*Slim Fast Lane.*/i }, function (err, co) {
         coolers[8] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.0.L_material": /.*Refuel Cooler.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.0.L_material": /.*Refuel Cooler.*/i }, function (err, co) {
         coolers[9] = co;
     })
     setTimeout(function () {
@@ -120,40 +120,40 @@ var cant_cooler = function (callback) {
 }
 var cant_visi = function (callback) {
     var visi = [];
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Colgante.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Colgante.*/i }, function (err, co) {
         visi[0] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Sticker de lata.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Sticker de lata.*/i }, function (err, co) {
         visi[1] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Marca Precio.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Marca Precio.*/i }, function (err, co) {
         visi[2] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Cartoon.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Cartoon.*/i }, function (err, co) {
         visi[3] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Lata Aluminio.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Lata Aluminio.*/i }, function (err, co) {
         visi[4] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Sticky shlef.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Sticky shlef.*/i }, function (err, co) {
         visi[5] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Carrileras.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Carrileras.*/i }, function (err, co) {
         visi[6] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Two Cans.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Two Cans.*/i }, function (err, co) {
         visi[7] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Parasite SC.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Parasite SC.*/i }, function (err, co) {
         visi[8] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Parasite 4Pack.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Parasite 4Pack.*/i }, function (err, co) {
         visi[9] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Dispensador Lata.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Dispensador Lata.*/i }, function (err, co) {
         visi[10] = co;
     })
-    Cli.count({ "distribuye": true, "materiales.1.L_material": /.*Rack.*/i }, function (err, co) {
+    Cli.countDocuments({ "distribuye": true, "materiales.1.L_material": /.*Rack.*/i }, function (err, co) {
         visi[11] = co;
     })
     setTimeout(function () {

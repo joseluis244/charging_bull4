@@ -2,7 +2,7 @@ GPS = [];
 function buscar(filtro){
     var elementos = document.getElementById("lista_clientes").getElementsByTagName("li");
     for(i=0; i<=elementos.length-1;i++){
-        var filtrado = elementos[i].getElementsByTagName("span")[0].innerHTML.toUpperCase();
+        var filtrado = elementos[i].getElementsByTagName("span")[0].getElementsByTagName("span")[0].innerHTML.toUpperCase();
         if(filtrado.indexOf(filtro.toUpperCase())>-1){
             elementos[i].style.display = "";
         }
