@@ -101,7 +101,7 @@
             <div class="datos">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="text" id="cont_nombre" onkeyup="guardarCONTACTO(this)">
-                    <label class="mdl-textfield__label" for="cont_nombre">Direccion...</label>
+                    <label class="mdl-textfield__label" for="cont_nombre">Nombre...</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="datocontacto" onkeyup="guardarNUMERO_CONTACTO(this)">
@@ -120,6 +120,16 @@
             </button>
         </section>
     </main>
+    <div class="bloqueo">
+        <div class="bloqueo_cont">
+            <div class="bloqueo_img">
+                <i class="material-icons">
+                    error
+                </i>
+            </div>
+            <div class="bloqueo_msg">Se requiere permiso del GPS <br>Recargue la pagina</div>
+        </div>
+    </div>
     <script src="./JS/registro.js"></script>
 </body>
 </html>

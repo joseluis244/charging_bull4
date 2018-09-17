@@ -1,0 +1,13 @@
+
+<ul class="mdl-list" id="lista_clientes">
+    <% for(i=0;i <= cli.length-1;i++){ %>
+    <li class="mdl-list__item lista_borde mdl-list__item--two-line" onclick="vercliente(this)">
+        <span class="mdl-list__item-primary-content">
+            <span>
+                <%= cli[i].nombre %></span>
+            <span class="mdl-list__item-sub-title">
+                <%= cli[i].direccion %></span>
+        </span>
+    </li>
+    <% } %>
+</ul>

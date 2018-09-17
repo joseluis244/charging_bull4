@@ -1,7 +1,7 @@
 var distribuye,nombre_distribuidor,vende_frio,V_comentario;
 var b_precios=[0,0,0,0,0];
-var lista_cooler = ["","","","","","","","","",""];
-var lista_visibility = ["","","","","","","","","","","",""];
+var lista_cooler = [];
+var lista_visibility = [];
 var siguiente = document.getElementById("boton_encuesta");
 var img = new Image();
 var img_tar = new Image();
@@ -9,9 +9,9 @@ var fr = new FileReader();
 var GPS = [];
 var fecha = new Date();
 var calidad = 60;
-distribuye = "si"
-nombre_distribuidor = "D&M"
-vende_frio = "si"
+distribuye = true;
+nombre_distribuidor = "D&M";
+vende_frio = true;
 V_comentario = ""
 siguiente.addEventListener("click",function(e){
     document.getElementById("pagina-1").style.display = "none";

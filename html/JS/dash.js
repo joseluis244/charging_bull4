@@ -73,7 +73,6 @@ var data2 = $.post("/dash",{data:"2"},function(e){
     });
 });
 var data3 = $.post("/dash",{data:"3"},function(e){
-    console.log(e)
     var ctx = document.getElementById("myChart3").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'doughnut',
@@ -103,9 +102,21 @@ var data3 = $.post("/dash",{data:"3"},function(e){
         }
     });
 });
-var data4 = $.post("/dash",{data:"4"},function(e){
+$.post("/dash",{data:"4"},function(e){
     var data_G = document.getElementsByClassName("valor1");
     data_G[0].innerHTML = e[0];
     data_G[1].innerHTML = e[1];
     data_G[2].innerHTML = e[2];
+})
+$.post("/dash",{data:"5"},function(e){
+    var cooler = document.getElementsByClassName("cant_cooler");
+    for(i=0;i<=cooler.length-1;i++){
+        cooler[i].innerHTML = e[i];
+    }
+})
+$.post("/dash",{data:"6"},function(e){
+    var visib = document.getElementsByClassName("cant_visi");
+    for(i=0;i<=visib.length-1;i++){
+        visib[i].innerHTML = e[i];
+    }
 })

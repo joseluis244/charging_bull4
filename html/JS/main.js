@@ -4,8 +4,7 @@ if(navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/iPhone|iP
 inicio();
 function inicio() {
     document.getElementsByTagName("main")[0].style.display = "none";
-    $("main").load("dash.html", function () {
-        console.log("Cargado")
+    $("main").load("/dash", function () {
     })
     setTimeout(function () {
         document.getElementsByTagName("main")[0].style.display = "inline-block";
@@ -13,9 +12,10 @@ function inicio() {
     }, 2000)
 }
 function cargar(carga){
-    $("main").load(carga)
     document.getElementsByClassName("espera")[0].style.display = "flex";
-    setTimeout(function(){
+    $.get(carga,function(data){
+        $("main").html(data);
         document.getElementsByClassName("espera")[0].style.display = "none";
-    },1000)
+    })
+
 }

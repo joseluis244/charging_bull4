@@ -18,8 +18,7 @@ function buscar_alrededor_fun(){
     navigator.geolocation.getCurrentPosition(function(Position){
         GPS[0] = Position.coords.latitude;
         GPS[1] = Position.coords.longitude;
-        //$("#Lista_clientes").load("listaGPS.html")
-        $.get("listaGPS.html",function(data){
+        $.post("/listaGPS",{lat:GPS[0],lng:GPS[1]},function(data){
             $("#Lista_clientes").html(data);
             document.getElementsByClassName("espera")[0].style.display = "none";
         })

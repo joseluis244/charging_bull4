@@ -8,12 +8,12 @@ function inicio_precio(){
 function vende(este){
     if(este.checked){
         document.getElementById("vende_lab").innerHTML = "Si";
-        distribuye = "si";
+        distribuye = true;
         $(".seccion_secundaria").show();
     }
     else{
         document.getElementById("vende_lab").innerHTML = "No";
-        distribuye = "no";
+        distribuye = false;
         $(".seccion_secundaria").hide();
     }
 }
@@ -61,7 +61,7 @@ function asignarcooler(este,pos){
     var cooler = este.parentElement.getElementsByClassName("mdl-checkbox__label")[0].innerHTML;
     var ind = lista_cooler.indexOf(cooler);
     if(este.checked){
-        lista_cooler.splice(pos,0,cooler);
+        lista_cooler.push(cooler);
     }
     else{
         lista_cooler.splice(ind,1);
@@ -71,7 +71,7 @@ function asignarvisibility(este,pos){
     var visibility = este.parentElement.getElementsByClassName("mdl-checkbox__label")[0].innerHTML;
     var ind = lista_visibility.indexOf(visibility);
     if(este.checked){
-        lista_visibility.splice(pos,0,visibility);
+        lista_visibility.push(visibility);
     }
     else{
         lista_visibility.splice(ind,1);
@@ -84,7 +84,8 @@ function guardar_datos(){
     datos = [fecha,distribuye,nombre_distribuidor,vende_frio,V_comentario,GPS].toString();
     coolers = lista_cooler.toString();
     visib = lista_visibility.toString();
-    $.post("/encuesta",{datos:datos,coolers:coolers,visib:visib},function(data){
+    env_precio = b_precios.toString();
+    $.post("/encuesta",{datos:datos,coolers:coolers,visib:visib,precios:env_precio},function(data){
 
     })
 }

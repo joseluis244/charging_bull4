@@ -21,6 +21,7 @@ var ClienteSchema = mongoose.Schema({
         share:{redbull:Number,
                 otro:Number},
         ciudad: String,
+        ultima_visita:Date,
     //vitacora
         vitacora:[{
                     GPS:[],

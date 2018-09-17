@@ -67,6 +67,32 @@ main .botonera{
     display: grid;
     margin-top: 20px;
 }
+.bloqueo{
+    position: fixed;
+    top: 60px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffffbd;
+}
+.bloqueo .bloqueo_cont{
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
+.bloqueo .bloqueo_cont .bloqueo_img{
+    display: flex;
+    justify-content: center;
+}
+.bloqueo .bloqueo_cont .bloqueo_img i{
+    font-size: 95px;
+    color: red;
+}
+.bloqueo .bloqueo_cont .bloqueo_msg{
+    font-size: 25px;
+}
 @media screen and (min-width: 700px){
     main section .datos{
         display: grid;
