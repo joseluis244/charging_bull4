@@ -25,6 +25,6 @@ function buscar_alrededor_fun(){
     })
     document.getElementsByClassName("espera")[0].style.display = "flex";
 }
-function vercliente(este){
-    location.href = "./ficha_cliente.html"
+function vercliente(este,id){
+    location.href = "./ficha?clid="+id
 }

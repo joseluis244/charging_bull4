@@ -34,6 +34,14 @@ function RGET (app) {
     app.get("/registrar",function(req,res){
         res.sendfile("views/registro.html");
     })
+    app.get("/ficha",function(req,res){
+        var id = req.param("clid");
+        clientes.findById(id,function(err,cli){
+            Cliente = cli;
+            res.render("ficha_cliente.ejs",{cli,cli});
+            console.log(Cliente)
+        })
+    })
     app.get("/encuesta",function(req,res){
         res.sendfile("views/encuesta.html");
     })

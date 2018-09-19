@@ -60,11 +60,41 @@ header .nav_menu .nav_item{
     background-color: white;
     height: 100%;
     z-index: 2;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.drawer .cli_datos .datos_titulo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.drawer .cli_datos .datos_contenido {
+    display: grid;
+    grid-template-columns: 95px auto;
+    margin-bottom: 15px;
+}
+.drawer .cli_datos .datos_contenido .datos_contenido_key {
+    font-weight: bold;
+}
+.datos_contenido_val.val_direccion {
+    display: flex;
+    align-items: center;
 }
 main{
     margin-top: 40px;
     z-index: 0;
     padding: 10px;
+}
+main .cont_datos_venta {
+    display: flex;
+    flex-direction: column;
+}
+main .cont_datos_venta .cont2_dato{
+    display: flex;
+}
+main .cont_datos_venta .datos_venta_key{
+    font-weight: bold;
+    width: 150px;
 }
 main #Materiales{
     display: grid;
@@ -87,7 +117,13 @@ main #Visitas{
 }
 main #Visitas .mdl-list__item{
     border-bottom: 1px solid #cccccc;
-     
+    border-left: 5px solid #cccccc;
+}
+main #Visitas .mdl-list__item.correcto {
+    border-left-color: green;
+}
+main #Visitas .mdl-list__item.incorrecto {
+    border-left-color: red;
 }
 main #Galeria{
     display: none;

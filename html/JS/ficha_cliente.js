@@ -9,4 +9,7 @@ $(".nav_item").click(function(){
 function nueva_encuesta(){
     document.location.href = "./encuesta.html"
 }
+function irPGS(lat,lng){
+    window.open("http://www.google.com")
+}
 $("#Galeria").load("./galeria.html")

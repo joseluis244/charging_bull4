@@ -6,75 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        #leyenda {
-            position: fixed;
-            top: 0px;
-            left: 0px;
-            right: 0px;
-            height: 60px;
-            background-color: #ffffffc9;
-            display: flex;
-            align-items: center;
-            box-sizing: border-box;
-            padding-left: 15px;
-        }
-        #leyenda .contenedor{
-            width: 170px;
-            height: auto;
-            display: flex;
-        }
-        .letra{
-            margin-right: 20px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 20px;
-            font-weight: bold;
-        }
-        .datos2{
-            display: flex;
-            align-items: center;
-        }
+    .a{
+        width: 0px;
+        height: 400px;
+        background-color: aqua;
+        transition: width 0.3s;
+        overflow: hidden;
+    }
+    .b{
+        width: 300px;
+    }
     </style>
 </head>
 <body>
+        <button onclick="aa()">cambiar</button>
+    <div class="a">
+        <div class="c">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio amet tempora iusto earum possimus reprehenderit rem unde officia, inventore repellendus suscipit vitae mollitia dignissimos facere illum ullam. Nesciunt, inventore minima.
+        </div> 
+    </div>
     
-    <div id="leyenda">
-
-        <div class="contenedor">
-            <div class="letra" style="background-color: #5dcadb">A</div>
-            <div class="datos2">Farmacia</div>
-        </div>
-        <div class="contenedor">  
-            <div class="letra" style="background-color: #9bed9c">B</div>
-            <div class="datos2">Kiosko</div>
-        </div>
-        <div class="contenedor">
-            <div class="letra" style="background-color: #68b9f2">C</div>
-            <div class="datos2">Licoreria</div>
-        </div>
-        <div class="contenedor"> 
-            <div class="letra" style="background-color: #fef990">D</div>
-            <div class="datos2">Mayorista</div>
-        </div>
-        <div class="contenedor">
-            <div class="letra" style="background-color: #f2a273">E</div>
-            <div class="datos2">Micromercado</div>
-        </div>
-        <div class="contenedor"> 
-            <div class="letra" style="background-color: #a8c2cc">F</div>
-            <div class="datos2">Minorista</div>
-        </div>
-        <div class="contenedor">
-            <div class="letra" style="background-color: #e7a29d">G</div>
-            <div class="datos2">Otro Impulso</div>
-        </div>
-        <div class="contenedor">
-            <div class="letra" style="background-color: #eb9bf9">H</div>
-            <div class="datos2">Tienda de barrio</div>
-        </div>
-      </div>
+    <script>
+        function aa(){
+            document.getElementsByTagName("div")[0].classList.toggle("b");
+            setTimeout(function(){
+                document.getElementsByTagName("div")[0].getElementsByTagName("div")[0].classList.toggle("d");
+            },200)
+        }
+    </script>
 </body>
 </html>

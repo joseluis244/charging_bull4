@@ -20,7 +20,7 @@
                         chevron_left
                     </i>
                 </span>
-                <span class="titulo"><h5>Titulo</h5></span>
+                <span class="titulo"><h5>Ficha</h5></span>
             </div>
             <div class="separador"></div>
             <span class="nav_menu">
@@ -37,26 +37,45 @@
                     </i>
                 </div>
             </div>
-            <div class="cli_datos">datos</div>
+            <div class="cli_datos">
+                <div class="datos_titulo">
+                    Datos del Cliente
+                </div>
+                <div class="datos_contenido">
+                    <div class="datos_contenido_key">ID:</div>
+                    <div class="datos_contenido_val"><%=cli.cli_id %></div>
+                    <div class="datos_contenido_key">Nombre:</div>
+                    <div class="datos_contenido_val"><%=cli.nombre %></div>
+                    <div class="datos_contenido_key">Ciudad:</div>
+                    <div class="datos_contenido_val"><%=cli.ciudad %></div>
+                    <div class="datos_contenido_key">Tipo:</div>
+                    <div class="datos_contenido_val"><%=cli.tipo %></div>
+                    <div class="datos_contenido_key">Direccion:</div>
+                    <div class="datos_contenido_val val_direccion"><span style="width: 100%"><%=cli.direccion %></span><span style="cursor: pointer;" onclick="irPGS('<%=cli.GPS[0] %>','<%=cli.GPS[1] %>')"><i class="material-icons">map</i></span></div>
+                </div>
+                <div class="datos_titulo">
+                    Datos de Contacto
+                </div>
+                <div class="datos_contenido">
+                    <div class="datos_contenido_key">Nombre:</div>
+                    <div class="datos_contenido_val"><%=cli.contacto[0].C_nombre%></div>
+                    <div class="datos_contenido_key">Telefono:</div>
+                    <div class="datos_contenido_val"><%=cli.contacto[0].C_dato%></div>
+                </div>
+            </div>
         </div>
         <main>
             <div class="ventana" id="Materiales">
-                <div>datos basicos</div>
-                <div class="cont_tabla">
-                    <table class="mdl-data-table mdl-js-data-table">
-                        <thead>
-                            <tr>
-                                <th class="mdl-data-table__cell--non-numeric">Procuto</th>
-                                <th>Precio</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Red Bull</td>
-                                <td>15 Bs.</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="cont_datos_venta">
+                    <div class="cont2_dato">
+                        <span class="datos_venta_key">Distribuidor:</span><span><%=cli.%></span>
+                    </div>
+                    <div class="cont2_dato">    
+                        <span class="datos_venta_key">Vende Energizante:</span><span>Si</span>
+                    </div>
+                    <div class="cont2_dato">
+                        <span class="datos_venta_key">Ultima visita:</span><span>dd/mm/yyyy</span>
+                    </div>
                 </div>
                 <div class="cont_tabla">
                     <table class="mdl-data-table mdl-js-data-table">
@@ -78,14 +97,26 @@
                     <table class="mdl-data-table mdl-js-data-table">
                         <thead>
                             <tr>
-                                <th class="mdl-data-table__cell--non-numeric">Procuto</th>
-                                <th>Precio</th>
+                                <th class="mdl-data-table__cell--non-numeric">Cooler</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">Red Bull</td>
-                                <td>15 Bs.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cont_tabla">
+                    <table class="mdl-data-table mdl-js-data-table">
+                        <thead>
+                            <tr>
+                                <th class="mdl-data-table__cell--non-numeric">Visibiliti</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Red Bull</td>
                             </tr>
                         </tbody>
                     </table>
@@ -93,8 +124,8 @@
             </div>
             <div class="ventana" id="Visitas">
                 <ul class="mdl-list">
-                    <li class="mdl-list__item" style="border-top: 1px solid #cccccc;">123</li>
-                    <li class="mdl-list__item">123</li>
+                    <li class="mdl-list__item correcto" style="border-top: 1px solid #cccccc;">123</li>
+                    <li class="mdl-list__item incorrecto">123</li>
                     <li class="mdl-list__item">asd</li>
                 </ul>
             </div>
