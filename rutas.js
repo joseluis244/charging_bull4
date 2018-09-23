@@ -49,9 +49,29 @@ function RGET (app) {
         })
     })
     app.get("/excel",function(req,res){
-        xlsx.D_tabla(function(nombre){
+        xlsx.D_tabla_comlpeta(function(nombre){
             setTimeout(function(){
-                res.download("./TEMP/"+nombre+".xlsx");
+                res.download("./TEMP/"+nombre+".xlsx","Reporte_completo.xlsx");
+                setTimeout(function(){
+                    fs.unlinkSync("./TEMP/"+nombre+".xlsx");
+                },2000);
+            },1000)
+        })
+    })
+    app.get("/excel2",function(req,res){
+        xlsx.D_tabla_reqguion(function(nombre){
+            setTimeout(function(){
+                res.download("./TEMP/"+nombre+".xlsx","Reporte_Region.xlsx");
+                setTimeout(function(){
+                    fs.unlinkSync("./TEMP/"+nombre+".xlsx");
+                },2000);
+            },1000)
+        })
+    })
+    app.get("/excel3",function(req,res){
+        xlsx.D_tabla_mes(function(nombre){
+            setTimeout(function(){
+                res.download("./TEMP/"+nombre+".xlsx","Reporte_Mes.xlsx");
                 setTimeout(function(){
                     fs.unlinkSync("./TEMP/"+nombre+".xlsx");
                 },2000);

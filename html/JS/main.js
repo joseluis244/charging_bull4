@@ -19,6 +19,13 @@ function cargar(carga){
     })
 
 }
-function descargarexcel(){
-    location.href = "./excel"
+function descargarexcel(sel){
+    switch(sel){
+        case 1:  location.href = "./excel"
+        break;
+        case 2:  location.href = "./excel2"
+        break;
+        case 3:  location.href = "./excel3"
+        break;
+    }
 }
