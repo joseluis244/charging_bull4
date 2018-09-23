@@ -1,3 +1,4 @@
 node_modules/
 uploads/*.jpg
 uploads/*.jpeg
+TEMP/*.xlsx

@@ -277,11 +277,11 @@
                 <div class="seccion seccion_principal">
                     <div class="titulo">Comentario</div>
                     <div class="contenido">
-                       <textarea name="comentario" id="comentario" cols="30" rows="2" onkeyup="escribircomentario(this)"></textarea>
+                       <textarea style="width: 100%" name="comentario" id="comentario" cols="30" rows="2" onkeyup="escribircomentario(this)"></textarea>
                     </div>
                 </div>
                 <div id="botonera_encuesta" style="display: grid; padding-left: 20px; padding-right: 20px; margin-bottom: 20px">
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="boton_encuesta" onclick="guardar_datos()" disabled>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="boton_encuesta" onclick="guardar_datos('<%= cli._id %>')" disabled>
                         Siguiente
                     </button>
                 </div>

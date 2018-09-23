@@ -68,13 +68,13 @@
             <div class="ventana" id="Materiales">
                 <div class="cont_datos_venta">
                     <div class="cont2_dato">
-                        <span class="datos_venta_key">Distribuidor:</span><span><%=cli.%></span>
+                        <span class="datos_venta_key">Distribuidor:</span><span><%=cli.distribuidor%></span>
                     </div>
                     <div class="cont2_dato">    
-                        <span class="datos_venta_key">Vende Energizante:</span><span>Si</span>
+                        <span class="datos_venta_key">Vende Energizante:</span><span><%=(cli.distribuye == true)?"Si":"No"%></span>
                     </div>
                     <div class="cont2_dato">
-                        <span class="datos_venta_key">Ultima visita:</span><span>dd/mm/yyyy</span>
+                        <span class="datos_venta_key">Ultima visita:</span><span><%=ultima_visita()%></span>
                     </div>
                 </div>
                 <div class="cont_tabla">
@@ -88,7 +88,23 @@
                         <tbody>
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">Red Bull</td>
-                                <td>15 Bs.</td>
+                                <td><%= precioprod(0) %></td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Rush</td>
+                                <td><%= precioprod(1) %></td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Ciclon</td>
+                                <td><%= precioprod(2) %></td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Black</td>
+                                <td><%= precioprod(3) %></td>
+                            </tr>
+                            <tr>
+                                <td class="mdl-data-table__cell--non-numeric">Monster</td>
+                                <td><%= precioprod(4) %></td>
                             </tr>
                         </tbody>
                     </table>
@@ -101,9 +117,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Red Bull</td>
-                            </tr>
+                            <%if(cli.materiales[0].L_material.length <= 0){%>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Notiene ningun cooler</td>
+                                </tr>
+                            <%}%>
+                            <%for(i=0;i<=cli.materiales[0].L_material.length-1;i++){%>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric"><%= cli.materiales[0].L_material[i]%></td>
+                                </tr>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>
@@ -115,25 +138,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="mdl-data-table__cell--non-numeric">Red Bull</td>
-                            </tr>
+                            <%if(cli.materiales[1].L_material.length <= 0){%>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric">Notiene ningun visibility</td>
+                                </tr>
+                            <%}%>
+                            <%for(i=0;i<=cli.materiales[1].L_material.length-1;i++){%>
+                                <tr>
+                                    <td class="mdl-data-table__cell--non-numeric"><%= cli.materiales[1].L_material[i]%></td>    
+                                </tr>
+                            <% } %>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="ventana" id="Visitas">
                 <ul class="mdl-list">
-                    <li class="mdl-list__item correcto" style="border-top: 1px solid #cccccc;">123</li>
-                    <li class="mdl-list__item incorrecto">123</li>
-                    <li class="mdl-list__item">asd</li>
+                    <% for(i=0;i<=cli.vitacora.length-1;i++){ %>
+                        <li class="mdl-list__item <%= estado(i) %>"> <%= visita(i) %> </li>
+                    <% } %>
                 </ul>
             </div>
             <div class="ventana" id="Galeria">zxc</div>
             <div style="height: 65px;"></div>
         </main>
     </div>
-    <div id="add_btn" onclick="nueva_encuesta()">
+    <div id="add_btn" onclick="nueva_encuesta('<%=cli._id%>')">
         <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-color--red-800">
             <i class="material-icons">add</i>
         </button>
@@ -141,3 +171,40 @@
     <script src="JS/ficha_cliente.js"></script>
 </body>
 </html>
+<%
+function ultima_visita(){
+    var fecha = cli.ultima_visita;
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1;
+    var year = fecha.getFullYear();
+    return dia+"/"+mes+"/"+year;
+}
+function visita(pos){
+    var fecha = cli.vitacora[pos].fecha;
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1;
+    var year = fecha.getFullYear();
+    return dia+"/"+mes+"/"+year;
+}
+function precioprod(pos){
+    if(cli.productos[pos].P_precio>0){
+        return cli.productos[pos].P_precio;
+    }else{
+        return "No vende";
+    }
+}
+function estado(pos){
+    if(cli.vitacora[pos].GPS.length > 0){
+        var diflat = cli.vitacora[pos].GPS[0] - cli.GPS[0];
+        var diflng = cli.vitacora[pos].GPS[1] - cli.GPS[1];
+        if( (diflat => -0.002 && diflat <= 0.002) && (diflng => -0.002 && diflng <= 0.002) ){
+            return 'correcto';
+        }else{
+            return 'incorrecto';
+        }
+        
+    }else{
+        return ''
+    }
+}
+%>

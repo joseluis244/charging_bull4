@@ -33,6 +33,7 @@ document.getElementById("imagen").addEventListener("change",function(e){
         }, 1000)
     }
 })
+console.log(location.href);
 navigator.geolocation.getCurrentPosition(function(Position){
     GPS[0] = Position.coords.latitude;
     GPS[1] = Position.coords.longitude;

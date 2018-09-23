@@ -6,8 +6,8 @@ $(".nav_item").click(function(){
     $("main .ventana").hide();
     $("#"+selector).show();
 })
-function nueva_encuesta(){
-    document.location.href = "./encuesta.html"
+function nueva_encuesta(id){
+    document.location.href = "./encuesta?clid="+id;
 }
 function irPGS(lat,lng){
     window.open("http://www.google.com")

@@ -19,3 +19,6 @@ function cargar(carga){
     })
 
 }
+function descargarexcel(){
+    location.href = "./excel"
+}

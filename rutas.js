@@ -4,6 +4,7 @@ const fs = require("fs");
 const dashm = require("./modulos/dash");
 const clientes = require("./models/clientes");
 const conf = JSON.parse(fs.readFileSync("./configuraciones/conf.json"));
+const xlsx = require("./excel");
 var Cliente = {};
 
 function RGET (app) {
@@ -39,11 +40,23 @@ function RGET (app) {
         clientes.findById(id,function(err,cli){
             Cliente = cli;
             res.render("ficha_cliente.ejs",{cli,cli});
-            console.log(Cliente)
         })
     })
     app.get("/encuesta",function(req,res){
-        res.sendfile("views/encuesta.html");
+        console.log(req.param("clid"));
+        clientes.findById(req.param("clid"),{tipo:1},function(err,cli){
+            res.render("encuesta.ejs",{cli:cli});
+        })
+    })
+    app.get("/excel",function(req,res){
+        xlsx.D_tabla(function(nombre){
+            setTimeout(function(){
+                res.download("./TEMP/"+nombre+".xlsx");
+                setTimeout(function(){
+                    fs.unlinkSync("./TEMP/"+nombre+".xlsx");
+                },2000);
+            },1000)
+        })
     })
 }
 function RPOST(app) {
