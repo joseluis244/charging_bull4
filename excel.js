@@ -64,7 +64,7 @@ var D_tabla_comlpeta = function (callback) {
             let ciudad = cli[i].ciudad;
             let direccion = cli[i].direccion;
             let tipo = cli[i].tipo;
-            let comen = cli[i].comentario;
+            //let comen = cli[i].comentario;
             for (j = 0; j <= cli[i].vitacora.length - 1; j++) {
                 let distribuye = (cli[i].vitacora[j].distribuye == true ? "Si" : "No");
                 let distribuidor = cli[i].vitacora[j].distribuidor;
@@ -73,6 +73,7 @@ var D_tabla_comlpeta = function (callback) {
                 let cooler = cli[i].vitacora[j].materiales[0].L_material;
                 let vis = cli[i].vitacora[j].materiales[1].L_material;
                 let caras = [cli[i].vitacora[j].share.redbull, cli[i].vitacora[j].share.otro];
+                let comen = cli[i].vitacora[j].comentario;
                 //console.log(caras)
                 sheet.addRow({
                     id: id,
@@ -225,7 +226,7 @@ var D_tabla_reqguion = function (callback) {
             let ciudad = cli[i].ciudad;
             let direccion = cli[i].direccion;
             let tipo = cli[i].tipo;
-            let comen = cli[i].comentario;
+            //let comen = cli[i].comentario;
             for (j = 0; j <= cli[i].vitacora.length - 1; j++) {
                 let distribuye = (cli[i].vitacora[j].distribuye == true ? "Si" : "No");
                 let distribuidor = cli[i].vitacora[j].distribuidor;
@@ -234,6 +235,7 @@ var D_tabla_reqguion = function (callback) {
                 let cooler = cli[i].vitacora[j].materiales[0].L_material;
                 let vis = cli[i].vitacora[j].materiales[1].L_material;
                 let caras = [cli[i].vitacora[j].share.redbull, cli[i].vitacora[j].share.otro];
+                let comen = cli[i].vitacora[j].comentario;
                 //console.log(caras)
                 if(cli[i].ciudad == "Santa Cruz"){
                     sheet.addRow({
