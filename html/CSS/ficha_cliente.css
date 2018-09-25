@@ -125,6 +125,12 @@ main #Visitas .mdl-list__item.correcto {
 main #Visitas .mdl-list__item.incorrecto {
     border-left-color: red;
 }
+main #Visitas li{
+    display: flex;
+}
+main #Visitas li > span{
+    width: 100%;
+}
 main #Galeria{
     display: none;
 }

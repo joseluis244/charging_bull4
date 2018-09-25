@@ -9,7 +9,13 @@ var Cliente = {};
 
 function RGET (app) {
     app.get("/", function (req, res) {
+        res.redirect("/login")
+    })
+    app.get("/main", function (req, res) {
         res.sendfile("views/main.html")
+    })
+    app.get("/login",function(req,res){
+        res.sendfile("views/login.html");
     })
     app.get("/dash", function (req, res) {      
         res.sendfile("views/dash.html");

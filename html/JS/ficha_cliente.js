@@ -18,5 +18,7 @@ function cargargaleria(id){
         $("#Galeria").html(data);
     })
 }
-
+function verdistancia(latV,lngV,latO,lngO){
+    window.open("https://www.google.com/maps/dir/?api=1&origin="+latV+","+lngV+"&destination="+latO+","+lngO);
+}
 //$("#Galeria").post("./galeria.html")
