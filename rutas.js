@@ -43,7 +43,6 @@ function RGET (app) {
         })
     })
     app.get("/encuesta",function(req,res){
-        console.log(req.param("clid"));
         clientes.findById(req.param("clid"),{tipo:1},function(err,cli){
             res.render("encuesta.ejs",{cli:cli});
         })
@@ -119,7 +118,6 @@ function RPOST(app) {
         })
     })
     app.post("/foto",upload.single("foto"),function(req,res,next){
-        console.log(req.file.originalname)
         clientes.update({_id:req.file.originalname.split("$%")[0]},{$push:{fotos:{fecha:req.file.originalname.split("$%")[1],nombre:req.file.filename+".jpg"}}},function(){})
         fs.rename(req.file.path,renombre(req.file),function(){})
         res.send("asd")
@@ -152,7 +150,6 @@ function RPOST(app) {
         })
         //N_cleinte.save(function(err){});
         Cliente = N_cleinte;
-        console.log(Cliente);
         res.send(Cliente._id);
     })
 }
@@ -210,7 +207,7 @@ function guardar_main(datos,cooler,visi,precios){
         "materiales.0.L_material":col,
         "materiales.1.N_material":"Visibility",
         "materiales.1.L_material":vi
-    },function(err){console.log(err)});
+    },function(err){});
     clientes.update({_id:id},{$push:{
         vitacora: {
             "GPS.0": lat,
@@ -237,5 +234,5 @@ function guardar_main(datos,cooler,visi,precios){
             usuario:"Usuario"
         }
     }
-    },function (err){console.log(err)})
+    },function (err){})
 }
