@@ -1,4 +1,6 @@
 const express = require("express");
+const https= require("https");
+const ssl = require("./ssl");
 const Rutas = require("./rutas");
 const bodyParser = require('body-parser');
 const favicon = require('express-favicon');
@@ -8,6 +10,7 @@ const mongoose = require("mongoose");
 const conf = JSON.parse(fs.readFileSync("./configuraciones/conf.json"));
 var mongoDB = conf.DB;
 mongoose.connect(mongoDB,{ useNewUrlParser: true });
+
 //use
 app.use("/",express.static("html"));
 app.use("/upload",express.static("upload"));
@@ -24,6 +27,7 @@ Rutas.RGET(app);
 Rutas.RPOST(app);
 
 //inicia servicor
+https.createServer(ssl.ssl(),app).listen(4000);
 app.listen(3000,function(){
     console.log("Servidor iniciado");
 })

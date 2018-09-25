@@ -12,4 +12,11 @@ function nueva_encuesta(id){
 function irPGS(lat,lng){
     window.open("https://www.google.com/maps/dir/?api=1&destination="+lat+","+lng);
 }
-$("#Galeria").load("./galeria.html")
+function cargargaleria(id){
+    //console.log(id);
+    $.post("/galeriafotos",{id:id},function(data){
+        $("#Galeria").html(data);
+    })
+}
+
+//$("#Galeria").post("./galeria.html")

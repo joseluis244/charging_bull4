@@ -9,7 +9,10 @@
 </head>
 <body>
     <div id="main_contenedor">
-        
+        <% if(fotos.length<=0){ %>
+            <h3>No se encontraron fotos</h3>
+        <%}%>
+        <% for(i=0;i<=fotos.length-1;i++){ %>
         <div class="contenedor_img">
             <div class="imgen">
                 <div class="giro" onclick="rot_img(-90,this)">
@@ -17,18 +20,26 @@
                         rotate_left
                     </i>
                 </div>
-                <div class="imagen_ver"><img src="../upload/upload_720b0a28e7340665e42c6ffa3d374510.jpg" alt=""></div>
+                <div class="imagen_ver"><img src="../upload/<%= fotos[i].nombre %>" alt="Foto no encontrda"></div>
                 <div class="giro"onclick="rot_img(90,this)">
                     <i class="material-icons">
                         rotate_right
                     </i>
                 </div>
             </div>
-            <div class="info">dd/mm/yyyy</div>
+            <div class="info"><%= verfecha(fotos[i].fecha) %></div>
         </div>
-
+        <% } %>
 
     </div>
     <script src="./JS/galeria.js"></script>
 </body>
 </html>
+<%
+    function verfecha(fecha){
+        var dia = fecha.getDate();
+        var mes = fecha.getMonth()+1;
+        var year = fecha.getFullYear();
+        return dia+"/"+mes+"/"+year;
+    }
+%>

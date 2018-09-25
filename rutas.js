@@ -152,6 +152,12 @@ function RPOST(app) {
         Cliente = N_cleinte;
         res.send(Cliente._id);
     })
+    app.post("/galeriafotos",function(req,res){
+        var id = req.body.id;
+        clientes.findById(id,{fotos:1},function(err,cli){
+            res.render("galeria.ejs",{fotos:cli.fotos});
+        })
+    })
 }
 module.exports.RGET = RGET;
 module.exports.RPOST = RPOST;
