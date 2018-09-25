@@ -197,7 +197,8 @@ function estado(pos){
     if(cli.vitacora[pos].GPS.length > 0){
         var diflat = cli.vitacora[pos].GPS[0] - cli.GPS[0];
         var diflng = cli.vitacora[pos].GPS[1] - cli.GPS[1];
-        if( (diflat => -0.002 && diflat <= 0.002) && (diflng => -0.002 && diflng <= 0.002) ){
+
+        if( diflat >= -0.008 && diflat <= 0.008 && diflng >= -0.008 && diflng <= 0.008 ){
             return 'correcto';
         }else{
             return 'incorrecto';

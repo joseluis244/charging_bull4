@@ -80,8 +80,8 @@ function asignarvisibility(este,pos){
 function escribircomentario(este){
     V_comentario = este.value;
 }
-function guardar_datos(){
-    datos = [fecha,distribuye,nombre_distribuidor,vende_frio,V_comentario,GPS].toString();
+function guardar_datos(id){
+    datos = [id,fecha,distribuye,nombre_distribuidor,vende_frio,V_comentario,GPS].toString();
     coolers = lista_cooler.toString();
     visib = lista_visibility.toString();
     env_precio = b_precios.toString();
@@ -89,11 +89,12 @@ function guardar_datos(){
 
     })
 }
-function subir_foto(este){
+function subir_foto(este,id){
+    var fecha = new Date();
     document.getElementById("uploadok").getElementsByTagName("i")[0].innerHTML = "cloud_upload";
     document.getElementById("mensajes_foto").getElementsByTagName("span")[0].innerHTML = `Subiendo`;
     document.getElementById("mensajes_foto").getElementsByClassName("mdl-spinner")[0].style.display = "inline-block";
-    jic.upload(img_tar, "/foto", "foto", "new.jpg", function (res) {
+    jic.upload(img_tar, "/foto", "foto", id+"$%"+fecha, function (res) {
         if(res == "asd"){
             location.href = "/"
         }

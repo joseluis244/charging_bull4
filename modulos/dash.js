@@ -58,7 +58,7 @@ var moda = function(callback) {
     })
 }
 var distribuidor = function(callback){
-    Cli.find({},{"tipo":1},{sort:{"tipo":1}},function(err,cli){
+    Cli.find({ $or: [ { "distribuye": true }, { "distribuye": false } ] },{"tipo":1},{sort:{"tipo":1}},function(err,cli){
         var valor = [];
         var lab = [];
         var tipo = cli[0].tipo;

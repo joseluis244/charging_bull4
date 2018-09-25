@@ -119,16 +119,13 @@ function RPOST(app) {
         })
     })
     app.post("/foto",upload.single("foto"),function(req,res,next){
-        fs.rename(req.file.path,renombre(req.file))
+        console.log(req.file.originalname)
+        clientes.update({_id:req.file.originalname.split("$%")[0]},{$push:{fotos:{fecha:req.file.originalname.split("$%")[1],nombre:req.file.filename+".jpg"}}},function(){})
+        fs.rename(req.file.path,renombre(req.file),function(){})
         res.send("asd")
     })
     app.post("/encuesta",function(req,res){
-        console.log(req.body.datos);
-        console.log(req.body.coolers);
-        console.log(req.body.visib);
-        console.log(req.body.precios);
-        //guardar_main();
-        //guardar_vitacora();
+        guardar_main(req.body.datos,req.body.coolers,req.body.visib,req.body.precios);
     })
     app.post("/listaGPS",function(req,res){
         var lat_I = parseFloat(req.body.lat)-conf.factor;
@@ -164,4 +161,81 @@ module.exports.RPOST = RPOST;
 
 function renombre (a){
     return a.path+".jpg";
+}
+function guardar_main(datos,cooler,visi,precios){
+    let datos2 = datos.split(",");
+    let id = datos2[0];
+    let fecha = datos2[1];
+    let distribuye = datos2[2];
+    let distribuidor = datos2[3];
+    let frio = datos2[4];
+    let comentarios = datos2[5];
+    let lat = datos2[6];
+    let lng = datos2[7];
+    let acc = datos2[8];
+    let pr0 = precios.split(",")[0];
+    let pr1 = precios.split(",")[1];
+    let pr2 = precios.split(",")[2];
+    let pr3 = precios.split(",")[3];
+    let pr4 = precios.split(",")[4];
+    if(cooler.split(",")[0]==""){
+        var col = []
+    }
+    else{
+        var col = cooler.split(",");
+    }
+    if(visi.split(",")[0]==""){
+        var vi = [];
+    }
+    else{
+        var vi = visi.split(",");
+    }
+    clientes.update({_id:id},{
+        distribuye:distribuye,
+        distribuidor: distribuidor,
+        comentario: comentarios,
+        frio:frio,
+        ultima_visita:new Date(fecha),
+        "productos.0.P_nombre":"Red Bull",
+        "productos.0.P_precio":pr0,
+        "productos.1.P_nombre":"Rush",
+        "productos.1.P_precio":pr1,
+        "productos.2.P_nombre":"Ciclon 500 ML",
+        "productos.2.P_precio":pr2,
+        "productos.3.P_nombre":"Black",
+        "productos.3.P_precio":pr3,
+        "productos.4.P_nombre":"Monster",
+        "productos.4.P_precio":pr4,
+        "materiales.0.N_material":"Cooler",
+        "materiales.0.L_material":col,
+        "materiales.1.N_material":"Visibility",
+        "materiales.1.L_material":vi
+    },function(err){console.log(err)});
+    clientes.update({_id:id},{$push:{
+        vitacora: {
+            "GPS.0": lat,
+            "GPS.1": lng,
+            "GPS.2": acc,
+            distribuye: distribuye,
+            distribuidor: distribuidor,
+            comentario: comentarios,
+            fecha: new Date(fecha),
+            "productos.0.P_nombre": "Red Bull",
+            "productos.0.P_precio": pr0,
+            "productos.1.P_nombre": "Rush",
+            "productos.1.P_precio": pr1,
+            "productos.2.P_nombre": "Ciclon 500 ML",
+            "productos.2.P_precio": pr2,
+            "productos.3.P_nombre": "Black",
+            "productos.3.P_precio": pr3,
+            "productos.4.P_nombre": "Monster",
+            "productos.4.P_precio": pr4,
+            "materiales.0.N_material": "Cooler",
+            "materiales.0.L_material": col,
+            "materiales.1.N_material": "Visibility",
+            "materiales.1.L_material": vi,
+            usuario:"Usuario"
+        }
+    }
+    },function (err){console.log(err)})
 }

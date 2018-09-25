@@ -10,6 +10,6 @@ function nueva_encuesta(id){
     document.location.href = "./encuesta?clid="+id;
 }
 function irPGS(lat,lng){
-    window.open("http://www.google.com")
+    window.open("https://www.google.com/maps/dir/?api=1&destination="+lat+","+lng);
 }
 $("#Galeria").load("./galeria.html")

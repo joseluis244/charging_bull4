@@ -7,6 +7,7 @@ clientes.find({ $or: [ { "distribuye": true }, { "distribuye": false } ] },funct
     let ultimavisita = 0;
     let comentario = 0;
     let F_GPS = 0;
+    let barrio = 0;
     for(let i=0;i<=cli.length-1;i++){
         //ultima visita
         if(cli[i].ultima_visita > 0){
@@ -18,6 +19,10 @@ clientes.find({ $or: [ { "distribuye": true }, { "distribuye": false } ] },funct
                 ultimavisita++;
             }
         }
+        if(cli[i].tipo == "Tienda de Bariio"){
+            clientes.update({_id:cli[i]._id},{"tipo":"Tienda de Barrio"},function(){})
+            barrio++;
+        }
         //fin ultima visita
         //comentario vitacora
         for(let j=0;j<=cli[i].vitacora.length-1;j++){
@@ -26,7 +31,7 @@ clientes.find({ $or: [ { "distribuye": true }, { "distribuye": false } ] },funct
                 comentario++;
             }
             if(typeof cli[i].vitacora[j].GPS[0] == "undefined"){
-                clientes.update({_id:cli[i]._id,"vitacora._id":cli[i].vitacora[j]._id},{$set:{"vitacora.$.GPS.0":cli[i].GPS[0],"vitacora.$.GPS.1":cli[i].GPS[1],"vitacora.$.GPS.2":100}},function(){});
+                clientes.update({_id:cli[i]._id,"vitacora._id":cli[i].vitacora[j]._id},{"vitacora.$.GPS":[cli[i].GPS[0],cli[i].GPS[1],100]},function(){});
                 F_GPS++;
             }
             //console.log(typeof cli[i].vitacora[j].GPS[0])
@@ -36,4 +41,8 @@ clientes.find({ $or: [ { "distribuye": true }, { "distribuye": false } ] },funct
     console.log(ultimavisita+" archivos actualizados ultima visita")
     console.log(comentario+" comentarios")
     console.log(F_GPS+" Actualizados")
+    console.log(barrio+" correcciones de barrio")
+    setTimeout(function(){
+        mongoose.disconnect();
+    },2000)
 })
