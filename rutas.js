@@ -12,15 +12,16 @@ function RGET (app,passport) {
         res.redirect("/login")
     })
     app.get("/main",isLoggedIn, function (req, res) {
+        console.log(req.user)
         res.sendfile("views/main.html")
     })
     app.get("/login",function(req,res){
         res.sendfile("views/login.html");
     })
-    app.get("/dash", function (req, res) {      
+    app.get("/dash",isLoggedIn, function (req, res) {      
         res.sendfile("views/dash.html");
     })
-    app.get("/lista/*",function(req,res){
+    app.get("/lista/*",isLoggedIn,function(req,res){
         var parametro = req.params[0];
         if (parametro == "completa") {
             clientes.find({}, {}, { sort: { _id: -1 } }, function (err, cli) {
@@ -37,29 +38,23 @@ function RGET (app,passport) {
                 res.render("lista.ejs", { cli: cli });
             })
         }
-        /*if (parametro == "mes") {
-            let fechaI = new Date(2018,8);
-            clientes.find({ "ultima_visita": { $gte: fechaI } }, {}, { sort: { "ciudad": -1, "ultima_visita": 1}}, function (err, cli) {
-                res.render("visitasmes.ejs",{cli:cli});
-            })
-        }*/
     })
-    app.get("/registrar",function(req,res){
+    app.get("/registrar",isLoggedIn,function(req,res){
         res.sendfile("views/registro.html");
     })
-    app.get("/ficha",function(req,res){
+    app.get("/ficha",isLoggedIn,function(req,res){
         var id = req.param("clid");
         clientes.findById(id,function(err,cli){
             Cliente = cli;
             res.render("ficha_cliente.ejs",{cli,cli});
         })
     })
-    app.get("/encuesta",function(req,res){
+    app.get("/encuesta",isLoggedIn,function(req,res){
         clientes.findById(req.param("clid"),{tipo:1},function(err,cli){
             res.render("encuesta.ejs",{cli:cli});
         })
     })
-    app.get("/excel",function(req,res){
+    app.get("/excel",isLoggedIn,function(req,res){
         xlsx.D_tabla_comlpeta(function(nombre){
             setTimeout(function(){
                 res.download("./TEMP/"+nombre+".xlsx","Reporte_completo.xlsx");
@@ -69,7 +64,7 @@ function RGET (app,passport) {
             },1000)
         })
     })
-    app.get("/excel2",function(req,res){
+    app.get("/excel2",isLoggedIn,function(req,res){
         xlsx.D_tabla_reqguion(function(nombre){
             setTimeout(function(){
                 res.download("./TEMP/"+nombre+".xlsx","Reporte_Region.xlsx");
@@ -79,7 +74,7 @@ function RGET (app,passport) {
             },1000)
         })
     })
-    app.get("/excel3",function(req,res){
+    app.get("/excel3",isLoggedIn,function(req,res){
         xlsx.D_tabla_mes(function(nombre){
             setTimeout(function(){
                 res.download("./TEMP/"+nombre+".xlsx","Reporte_Mes.xlsx");
@@ -89,13 +84,13 @@ function RGET (app,passport) {
             },1000)
         })
     })
-    app.get("/mapaclu",function(req,res){
+    app.get("/mapaclu",isLoggedIn,function(req,res){
         clientes.find({ "distribuye": true },{ "GPS": 1, "tipo": 1},{sort:{"tipo":1}},function(err,cli){
             res.render("mapcluster.ejs",{cli:cli});
         })
     })
-    app.get("/succes",function(req,res){res.send("/main")})
-    app.get("/fail",function(req,res){res.send("error")})
+    app.get("/succes",isLoggedIn,function(req,res){res.send("/main")})
+    app.get("/fail",isLoggedIn,function(req,res){res.send("error")})
 }
 function RPOST(app,passport) {
 
