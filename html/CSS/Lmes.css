@@ -1,0 +1,43 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0px;
+}
+main{
+
+}
+main .cabeza{
+    display: flex;
+    margin: -5px;
+    background-color: #031e3c;
+    color: white;
+    font-size: 18px;
+}
+main .cabeza > div{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    height: 40px;
+    align-items: center;
+    cursor: pointer;
+}
+main .cabeza .seccionado{
+    border-bottom: 4px solid red;
+}
+section ul li{
+    border-bottom: 1px solid #cccccc;
+    margin-top: 2px;
+}
+section ul .correcto{
+    border-left: 4px solid green;
+}
+section ul .incorrecto{
+    border-left: 4px solid red;
+}
+.dep_sel{
+    display: block;
+}
+.dep_no_sel{
+    display: none;
+}

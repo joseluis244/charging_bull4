@@ -123,10 +123,11 @@ main #Visitas .mdl-list__item.correcto {
     border-left-color: green;
 }
 main #Visitas .mdl-list__item.incorrecto {
-    border-left-color: red;
+    border-left-color: rgb(185, 36, 36);
 }
 main #Visitas li{
     display: flex;
+    margin-top: 3px;
 }
 main #Visitas li > span{
     width: 100%;

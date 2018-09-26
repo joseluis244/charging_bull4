@@ -37,6 +37,12 @@ function RGET (app) {
                 res.render("lista.ejs", { cli: cli });
             })
         }
+        if (parametro == "mes") {
+            let fechaI = new Date(2018,8);
+            clientes.find({ "ultima_visita": { $gte: fechaI } }, {}, { sort: { "ciudad": -1, "ultima_visita": 1}}, function (err, cli) {
+                res.render("visitasmes.ejs",{cli:cli})
+            })
+        }
     })
     app.get("/registrar",function(req,res){
         res.sendfile("views/registro.html");
