@@ -17,7 +17,16 @@ function cargar(carga){
         $("main").html(data);
         document.getElementsByClassName("espera")[0].style.display = "none";
     })
-
+}
+function cargarP(carga){
+    document.getElementsByClassName("espera")[0].style.display = "flex";
+    let fecha = new Date();
+    let year = fecha.getFullYear();
+    let mes = fecha.getMonth();
+    $.post(carga,{year:year,mes:mes},function(data){
+        $("main").html(data);
+        document.getElementsByClassName("espera")[0].style.display = "none";
+    })
 }
 function descargarexcel(sel){
     switch(sel){

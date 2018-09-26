@@ -55,7 +55,6 @@
 function GPS_I(i){
     var diflat = cli[i].GPS[0] - cli[i].vitacora[ cli[i].vitacora.length-1 ].GPS[0]
     var diflng = cli[i].GPS[1] - cli[i].vitacora[ cli[i].vitacora.length-1 ].GPS[1]
-    console.log("______________________")
     if(diflat >= -0.008 && diflat <= 0.008 && diflng >= -0.008 && diflng <= 0.008 ){
         return 'correcto'
     }else{

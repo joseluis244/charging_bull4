@@ -7,11 +7,11 @@ const conf = JSON.parse(fs.readFileSync("./configuraciones/conf.json"));
 const xlsx = require("./excel");
 var Cliente = {};
 
-function RGET (app) {
+function RGET (app,passport) {
     app.get("/", function (req, res) {
         res.redirect("/login")
     })
-    app.get("/main", function (req, res) {
+    app.get("/main",isLoggedIn, function (req, res) {
         res.sendfile("views/main.html")
     })
     app.get("/login",function(req,res){
@@ -37,12 +37,12 @@ function RGET (app) {
                 res.render("lista.ejs", { cli: cli });
             })
         }
-        if (parametro == "mes") {
+        /*if (parametro == "mes") {
             let fechaI = new Date(2018,8);
             clientes.find({ "ultima_visita": { $gte: fechaI } }, {}, { sort: { "ciudad": -1, "ultima_visita": 1}}, function (err, cli) {
-                res.render("visitasmes.ejs",{cli:cli})
+                res.render("visitasmes.ejs",{cli:cli});
             })
-        }
+        }*/
     })
     app.get("/registrar",function(req,res){
         res.sendfile("views/registro.html");
@@ -89,8 +89,15 @@ function RGET (app) {
             },1000)
         })
     })
+    app.get("/mapaclu",function(req,res){
+        clientes.find({ "distribuye": true },{ "GPS": 1, "tipo": 1},{sort:{"tipo":1}},function(err,cli){
+            res.render("mapcluster.ejs",{cli:cli});
+        })
+    })
+    app.get("/succes",function(req,res){res.send("/main")})
+    app.get("/fail",function(req,res){res.send("error")})
 }
-function RPOST(app) {
+function RPOST(app,passport) {
 
     app.post("/dash", function (req, res) {
         if (req.body.data == "1") {
@@ -123,11 +130,6 @@ function RPOST(app) {
                 res.send(e)
             })
         }
-    })
-    app.get("/mapaclu",function(req,res){
-        clientes.find({ "distribuye": true },{ "GPS": 1, "tipo": 1},{sort:{"tipo":1}},function(err,cli){
-            res.render("mapcluster.ejs",{cli:cli});
-        })
     })
     app.post("/foto",upload.single("foto"),function(req,res,next){
         clientes.update({_id:req.file.originalname.split("$%")[0]},{$push:{fotos:{fecha:req.file.originalname.split("$%")[1],nombre:req.file.filename+".jpg"}}},function(){})
@@ -170,6 +172,20 @@ function RPOST(app) {
             res.render("galeria.ejs",{fotos:cli.fotos});
         })
     })
+    app.post("/lista/*",function(req,res){
+        let parametro = req.params[0];
+        let fechaI = new Date(req.body.year,req.body.mes);
+        if(parametro == "mes"){
+            clientes.find({ "ultima_visita": { $gte: fechaI } }, {}, { sort: { "ciudad": -1, "ultima_visita": 1}}, function (err, cli) {
+                res.render("visitasmes.ejs",{cli:cli});
+            })
+        }
+            
+    })
+    app.post('/login', passport.authenticate('local',{
+        successRedirect: '/succes',
+        failureRedirect: '/fail'
+    }));
 }
 module.exports.RGET = RGET;
 module.exports.RPOST = RPOST;
@@ -253,4 +269,14 @@ function guardar_main(datos,cooler,visi,precios){
         }
     }
     },function (err){})
+}
+function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated()){
+        return next();}
+
+    // if they aren't redirect them to the home page
+    console.log(req.originalUrl)
+    res.sendfile('views/login.html');
 }

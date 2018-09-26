@@ -32,6 +32,10 @@ body{
     display: grid;
     grid-template-rows: 200px 30px auto;
 }
+.tarjeta .cuerpo .msg{
+    display: flex;
+    justify-content: center;
+}
 .tarjeta .cuerpo .inp{
     display: flex;
     justify-content: center;

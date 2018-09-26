@@ -14,15 +14,17 @@
             <div class="cabeza"></div>
             <div class="cuerpo">
                 <div class="inp">
-                    <input type="text" placeholder="Usuario">
-                    <input type="password" placeholder="Clave">
+                    <input type="text" placeholder="Usuario" name="username">
+                    <input type="password" placeholder="Clave" name="password">
                 </div>
                 <div class="msg"></div>
                 <div class="btns">
-                    <button onclick="location.href = '/main'">LOGIN</button>
+                    <button onclick="login()">LOGIN</button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
