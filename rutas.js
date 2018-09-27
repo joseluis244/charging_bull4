@@ -12,7 +12,6 @@ function RGET (app,passport) {
         res.redirect("/login")
     })
     app.get("/main",isLoggedIn, function (req, res) {
-        console.log(req.user)
         res.sendfile("views/main.html")
     })
     app.get("/login",function(req,res){
@@ -90,7 +89,7 @@ function RGET (app,passport) {
         })
     })
     app.get("/succes",isLoggedIn,function(req,res){res.send("/main")})
-    app.get("/fail",isLoggedIn,function(req,res){res.send("error")})
+    app.get("/fail",function(req,res){res.send("error")})
 }
 function RPOST(app,passport) {
 
@@ -272,6 +271,5 @@ function isLoggedIn(req, res, next) {
         return next();}
 
     // if they aren't redirect them to the home page
-    console.log(req.originalUrl)
     res.sendfile('views/login.html');
 }
