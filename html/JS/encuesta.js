@@ -85,7 +85,8 @@ function guardar_datos(id){
     coolers = lista_cooler.toString();
     visib = lista_visibility.toString();
     env_precio = b_precios.toString();
-    $.post("/encuesta",{datos:datos,coolers:coolers,visib:visib,precios:env_precio},function(data){
+    env_share = share.toString();
+    $.post("/encuesta",{datos:datos,coolers:coolers,visib:visib,precios:env_precio,share:env_share},function(data){
 
     })
 }
@@ -96,9 +97,13 @@ function subir_foto(este,id){
     document.getElementById("mensajes_foto").getElementsByClassName("mdl-spinner")[0].style.display = "inline-block";
     jic.upload(img_tar, "/foto", "foto", id+"$%"+fecha, function (res) {
         if(res == "asd"){
-            location.href = "/"
+            location.href = "/main"
         }
     })
     este.disabled = "true"
     console.log("Subiendo")
+}
+function setshare(pos,este){
+    share[pos]=este.value;
+    console.log(share)
 }

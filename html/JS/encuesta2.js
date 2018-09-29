@@ -2,6 +2,7 @@ var distribuye,nombre_distribuidor,vende_frio,V_comentario;
 var b_precios=[0,0,0,0,0];
 var lista_cooler = [];
 var lista_visibility = [];
+var share=['','']
 var siguiente = document.getElementById("boton_encuesta");
 var img = new Image();
 var img_tar = new Image();

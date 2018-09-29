@@ -12,28 +12,38 @@ function RGET (app,passport) {
         res.redirect("/login")
     })
     app.get("/main",isLoggedIn, function (req, res) {
-        res.sendfile("views/main.html")
+        res.render("main.ejs",{user:req.user})
     })
     app.get("/login",function(req,res){
         res.sendfile("views/login.html");
     })
-    app.get("/dash",isLoggedIn, function (req, res) {      
-        res.sendfile("views/dash.html");
+    app.get("/dash",isLoggedIn, function (req, res) {
+        if(req.user.tipo == "adm"){
+            res.sendfile("views/dash.html");
+        }
+        else{
+            clientes.find({ "ciudad": req.user.ciudad }, {}, { sort: { _id: -1 },limit:30}, function (err, cli) {
+                res.render("lista.ejs", { cli: cli });
+            })
+        }
+
     })
     app.get("/lista/*",isLoggedIn,function(req,res){
         var parametro = req.params[0];
         if (parametro == "completa") {
-            clientes.find({}, {}, { sort: { _id: -1 } }, function (err, cli) {
-                res.render("lista.ejs", { cli: cli });
+
+            clientes.find({ $or: [ { "distribuye": true }, { "distribuye": false } ] }, {}, { sort: { "ciudad": -1, "ultima_visita": 1}}, function (err, cli) {
+                res.render("todoscli.ejs",{cli:cli});
             })
+
         }
         if (parametro == "region") {
-            clientes.find({ "ciudad": "Santa Cruz" }, {}, { sort: { _id: -1 },limit:30}, function (err, cli) {
+            clientes.find({ "ciudad": req.user.ciudad }, {}, { sort: { _id: -1 },limit:30}, function (err, cli) {
                 res.render("lista.ejs", { cli: cli });
             })
         }
         if (parametro == "reg_completa") {
-            clientes.find({ "ciudad": "Santa Cruz" }, {}, { sort: { _id: -1 }}, function (err, cli) {
+            clientes.find({ "ciudad": req.user.ciudad }, {}, { sort: { _id: -1 }}, function (err, cli) {
                 res.render("lista.ejs", { cli: cli });
             })
         }
@@ -131,7 +141,7 @@ function RPOST(app,passport) {
         res.send("asd")
     })
     app.post("/encuesta",function(req,res){
-        guardar_main(req.body.datos,req.body.coolers,req.body.visib,req.body.precios);
+        guardar_main(req.body.datos,req.body.coolers,req.body.visib,req.body.precios,req.body.share);
     })
     app.post("/listaGPS",function(req,res){
         var lat_I = parseFloat(req.body.lat)-conf.factor;
@@ -187,7 +197,7 @@ module.exports.RPOST = RPOST;
 function renombre (a){
     return a.path+".jpg";
 }
-function guardar_main(datos,cooler,visi,precios){
+function guardar_main(datos,cooler,visi,precios,share){
     let datos2 = datos.split(",");
     let id = datos2[0];
     let fecha = datos2[1];
@@ -216,6 +226,8 @@ function guardar_main(datos,cooler,visi,precios){
         var vi = visi.split(",");
     }
     clientes.update({_id:id},{
+        "share.redbull":share.split(",")[0],
+        "share.otro":share.split(",")[1],
         distribuye:distribuye,
         distribuidor: distribuidor,
         comentario: comentarios,
@@ -238,6 +250,8 @@ function guardar_main(datos,cooler,visi,precios){
     },function(err){});
     clientes.update({_id:id},{$push:{
         vitacora: {
+            "share.redbull":share.split(",")[0],
+            "share.otro":share.split(",")[1],
             "GPS.0": lat,
             "GPS.1": lng,
             "GPS.2": acc,
