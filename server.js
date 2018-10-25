@@ -17,6 +17,7 @@ mongoose.connect(mongoDB,{ useNewUrlParser: true });
 AUpassport.AUpassport(passport);
 
 //use
+app.use(favicon(__dirname+"/html/IMG/redbull-icon.png"));
 app.use("/",express.static("html"));
 app.use("/upload",express.static("upload"));
 app.use("/node_modules",express.static("node_modules"));
@@ -26,7 +27,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(favicon(__dirname+"/html/IMG/redbull-icon.png"));
 app.set('view engine', 'ejs');
 //app.use(function(req,res,next){console.log(req.body);next()})
 

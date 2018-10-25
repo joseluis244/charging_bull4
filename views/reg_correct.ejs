@@ -10,7 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="./CSS/MDL.css">
     <link rel="stylesheet" href="./CSS/registro.css">
-    <title>Registro</title>
+    <title>corregir</title>
 </head>
 <body>
     <header>
@@ -20,7 +20,7 @@
             </i>
         </span>
         <span>
-            <h5 style="margin-top: 15px">Registro</h5>
+            <h5 style="margin-top: 15px">Corregir</h5>
         </span>
     </header>
     <main>
@@ -30,11 +30,11 @@
             </div>
             <div class="datos">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="CLI_ID" onkeyup="guardarID(this)">
+                    <input class="mdl-textfield__input" type="text" id="CLI_ID" onkeyup="guardarID(this)" onload="guardarID(this)" value="<%= cli.cli_id %>">
                     <label class="mdl-textfield__label" for="CLI_ID">ID...</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="CLI_NOMBRE" onkeyup="guardarNOMBRE(this)">
+                    <input class="mdl-textfield__input" type="text" id="CLI_NOMBRE" onkeyup="guardarNOMBRE(this)" onload="guardarNOMBRE(this)" value="<%= cli.nombre %>">
                     <label class="mdl-textfield__label" for="CLI_NOMBRE">Nombre Cliente...</label>
                 </div>
             </div>
@@ -44,9 +44,9 @@
                 Ubicacion
             </div>
             <div class="datos">
-                <select name="ciudad" id="ciudad" style="margin-top: 20px; margin-bottom: 20px" onchange="guardarciudad(this)">
-                    <option value="Santa Cruz">Santa Cruz</option>
-                    <option value="La Paz">La Paz</option>
+                <select name="ciudad" id="ciudad" style="margin-top: 20px; margin-bottom: 20px" onchange="guardarciudad(this)" onload="guardarciudad(this)">
+                    <option value="Santa Cruz" <%= cli.ciudad=="Santa Cruz"?"selected":"" %> >Santa Cruz</option>
+                    <option value="La Paz" <%= cli.ciudad=="La Paz"?"selected":"" %> >La Paz</option>
                     <option value="Cochabamba">Cochabamba</option>
                     <option value="Beni">Beni</option>
                     <option value="Oruro">Oruro</option>
@@ -56,7 +56,7 @@
                     <option value="Pando">Pando</option>
                 </select>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="direccion" onkeyup="guardarDIRECCION(this)">
+                    <input class="mdl-textfield__input" type="text" id="direccion" onkeyup="guardarDIRECCION(this)" onload="guardarDIRECCION(this)" value="<%= cli.direccion %>">
                     <label class="mdl-textfield__label" for="direccion">Direccion...</label>
                 </div>
             </div>
@@ -66,31 +66,15 @@
                 Tipo de Cliente
             </div>
             <div class="datos">
-                <select name="tipo" id="tipo" onchange="guardartipo(this)">
-                    <option value="Licoreria">
-                        Licoreria
-                    </option>
-                    <option value="Micromercado">
-                        Micromercado
-                    </option>
-                    <option value="Tienda de Barrio">
-                        Tienda de Barrio
-                    </option>
-                    <option value="Kiosko">
-                        Kiosko
-                    </option>
-                    <option value="Famacia">
-                        Famacia
-                    </option>
-                    <option value="Otro Impulso">
-                        Otro Impulso
-                    </option>
-                    <option value="Mayorista">
-                        Mayorista
-                    </option>
-                    <option value="Minorista">
-                        Minorista
-                    </option>
+                <select name="tipo" id="tipo" onchange="guardartipo(this)" onload="guardartipo(this)">
+                    <option value="Licoreria" <%= cli.tipo=="Licoreria"?"selected":"" %> >Licoreria</option>
+                    <option value="Micromercado" <%= cli.tipo=="Micromercado"?"selected":"" %> >Micromercado</option>
+                    <option value="Tienda de Barrio"<%= cli.tipo=="Tienda de Barrio"?"selected":"" %>>Tienda de Barrio</option>
+                    <option value="Kiosko"<%= cli.tipo=="Kiosko"?"selected":"" %>>Kiosko</option>
+                    <option value="Famacia"<%= cli.tipo=="Famacia"?"selected":"" %>>Famacia</option>
+                    <option value="Otro Impulso"<%= cli.tipo=="Otro Impulso"?"selected":"" %>>Otro Impulso</option>
+                    <option value="Mayorista"<%= cli.tipo=="Mayorista"?"selected":"" %>>Mayorista</option>
+                    <option value="Minorista"<%= cli.tipo=="Minorista"?"selected":"" %>>Minorista</option>
                 </select>
             </div>
         </section>
@@ -100,36 +84,36 @@
             </div>
             <div class="datos">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="cont_nombre" onkeyup="guardarCONTACTO(this)">
+                    <input class="mdl-textfield__input" type="text" id="cont_nombre" onkeyup="guardarCONTACTO(this)" onload="guardarCONTACTO(this)" value="<%= cli.contacto[0].C_nombre %>">
                     <label class="mdl-textfield__label" for="cont_nombre">Nombre...</label>
                 </div>
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="datocontacto" onkeyup="guardarNUMERO_CONTACTO(this)">
+                    <input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="datocontacto" onkeyup="guardarNUMERO_CONTACTO(this)" onload="guardarNUMERO_CONTACTO(this)" value="<%= cli.contacto[0].C_dato %>">
                     <label class="mdl-textfield__label" for="datocontacto">Numero contacto...</label>
                     <span class="mdl-textfield__error">Input is not a number!</span>
                 </div>
             </div>
         </section>
-        <section class="mensajes">
-            <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" id="loader"></div>
-            <div id="mensaje_estado">Obteniendo Posicion GPS</div>
+        <section class="mensajes" style="display: none">
+            <i class="material-icons">info</i>
+            <div id="mensaje_estado"></div>
         </section>
         <section class="botonera">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="guardar_servidor()" id="reg_cli" disabled>
-                Registrar y Encuestar
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="guardar_servidor()" id="reg_cli">
+                Corregir
             </button>
         </section>
     </main>
-    <div class="bloqueo">
-        <div class="bloqueo_cont">
-            <div class="bloqueo_img">
-                <i class="material-icons">
-                    error
-                </i>
-            </div>
-            <div class="bloqueo_msg">Se requiere permiso del GPS <br>Recargue la pagina</div>
-        </div>
-    </div>
-    <script src="./JS/registro.js"></script>
+    <script>
+        var ID = "<%= cli._id %>";
+        var CLI_ID = "<%= cli.cli_id %>";
+        var CLI_nombre = "<%= cli.nombre %>";
+        var DIRECCION = "<%= cli.direccion %>";
+        var CONTACTO = "<%= cli.contacto[0].C_nombre %>";
+        var NUMERO_CONTACTO = "<%= cli.contacto[0].C_dato %>";
+        var ciudad = "<%= cli.ciudad %>";
+        var tipo = "<%= cli.tipo %>";
+    </script>
+    <script src="./JS/corregir.js"></script>
 </body>
 </html>

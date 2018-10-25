@@ -38,6 +38,7 @@
                 </div>
             </div>
             <div class="cli_datos">
+                <div style="float: right;cursor: pointer;" onclick="cerregir('<%=cli._id %>')"><i class="material-icons">create</i></div>
                 <div class="datos_titulo">
                     Datos del Cliente
                 </div>
@@ -154,8 +155,8 @@
             </div>
             <div class="ventana" id="Visitas">
                 <ul class="mdl-list">
-                    <% for(i=0;i<=cli.vitacora.length-1;i++){ %>
-                        <li class="mdl-list__item <%= estado(i) %>"> <%= visita(i) %> <span></span> <% if(estado(i) == "incorrecto"){ %> <i class="material-icons" onclick="verdistancia('<%=cli.vitacora[i].GPS[0]%>','<%=cli.vitacora[i].GPS[1]%>','<%=cli.GPS[0] %>','<%=cli.GPS[1] %>')">person_pin_circle</i> <% } %> </li>
+                    <% for(i=cli.vitacora.length-1;i>=0;i--){ %>
+                        <li class="mdl-list__item <%= estado(i) %>"> <%= visita(i) %> <span></span> <%if( comparacion(cli.vitacora[i].fecha) ){ %> <span style="width: 50px;" onclick="corregir_encuesta('<%= cli._id %>')"><i class="material-icons">create</i></span> <% } %> <% if(estado(i) == "incorrecto"){ %> <i class="material-icons" onclick="verdistancia('<%=cli.vitacora[i].GPS[0]%>','<%=cli.vitacora[i].GPS[1]%>','<%=cli.GPS[0] %>','<%=cli.GPS[1] %>')">person_pin_circle</i> <% } %> </li>
                     <% } %>
                 </ul>
             </div>
@@ -206,6 +207,16 @@ function estado(pos){
         
     }else{
         return ''
+    }
+}
+function comparacion(fecha){
+    fecha.setHours(0,0,0,0);
+    fecha2 = new Date();
+    fecha2.setHours(0,0,0,0);
+    if(fecha.toString() == fecha2.toString()){
+        return true;
+    }else{
+        return false;
     }
 }
 %>
