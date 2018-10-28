@@ -1,3 +1,4 @@
+
 const multer = require("multer");
 const upload = multer({dest: './upload/'});
 const fs = require("fs");
@@ -205,8 +206,8 @@ function RPOST(app,passport) {
         },function(){res.send(reeq[0])})
     })
     app.post("/corregir_encuesta",function(req,res){
-        let id = req.body.datos.split(",")[0];
-        let V_id = req.body.datos.split(",")[1];
+        var id = req.body.datos.split(",")[0];
+        var V_id = req.body.datos.split(",")[1];
         clientes.updateOne({_id:id},{
             "productos.0.P_precio":req.body.precios.split(",")[0],
             "productos.1.P_precio":req.body.precios.split(",")[1],
@@ -245,8 +246,8 @@ function RPOST(app,passport) {
         })
     })
     app.post("/lista/*",function(req,res){
-        let parametro = req.params[0];
-        let fechaI = new Date(req.body.year,req.body.mes);
+        var parametro = req.params[0];
+        var fechaI = new Date(req.body.year,req.body.mes);
         if(parametro == "mes"){
             clientes.find({ "ultima_visita": { $gte: fechaI } }, {}, { sort: { "ciudad": -1, "ultima_visita": 1}}, function (err, cli) {
                 res.render("visitasmes.ejs",{cli:cli});
@@ -266,21 +267,21 @@ function renombre (a){
     return a.path+".jpg";
 }
 function guardar_main(datos,cooler,visi,precios,share){
-    let datos2 = datos.split(",");
-    let id = datos2[0];
-    let fecha = datos2[1];
-    let distribuye = datos2[2];
-    let distribuidor = datos2[3];
-    let frio = datos2[4];
-    let comentarios = datos2[5];
-    let lat = datos2[6];
-    let lng = datos2[7];
-    let acc = datos2[8];
-    let pr0 = precios.split(",")[0];
-    let pr1 = precios.split(",")[1];
-    let pr2 = precios.split(",")[2];
-    let pr3 = precios.split(",")[3];
-    let pr4 = precios.split(",")[4];
+    var datos2 = datos.split(",");
+    var id = datos2[0];
+    var fecha = datos2[1];
+    var distribuye = datos2[2];
+    var distribuidor = datos2[3];
+    var frio = datos2[4];
+    var comentarios = datos2[5];
+    var lat = datos2[6];
+    var lng = datos2[7];
+    var acc = datos2[8];
+    var pr0 = precios.split(",")[0];
+    var pr1 = precios.split(",")[1];
+    var pr2 = precios.split(",")[2];
+    var pr3 = precios.split(",")[3];
+    var pr4 = precios.split(",")[4];
     if(cooler.split(",")[0]==""){
         var col = []
     }
