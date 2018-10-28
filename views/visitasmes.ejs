@@ -17,12 +17,12 @@
             <ul class="mdl-list">
                 <% var i = 0 %>
                 <% while(i<= cli.length-1 && cli[i].ciudad == "Santa Cruz"){ %>
-                <li class="mdl-list__item mdl-list__item--two-line <%= GPS_I(i) %>">
+                <li class="mdl-list__item mdl-list__item--two-line <%= GPS_I(i,cli) %>">
                     <span class="mdl-list__item-primary-content" onclick="irficha('<%= cli[i]._id %>')">
                         <span> <%= cli[i].nombre %> </span>
                         <span class="mdl-list__item-sub-title"><%= cli[i].direccion %></span>
                     </span>
-                    <% if(GPS_I(i)=="incorrecto"){ %>
+                    <% if(GPS_I(i,cli)=="incorrecto"){ %>
                     <span> <i class="material-icons" onclick="verdistancia('<%=cli[i].vitacora[ cli[i].vitacora.length-1 ].GPS[0]%>','<%=cli[i].vitacora[ cli[i].vitacora.length-1 ].GPS[1]%>','<%=cli[i].GPS[0] %>','<%=cli[i].GPS[1] %>')">person_pin_circle</i> </span>
                     <% } %>
                 </li>
@@ -33,12 +33,12 @@
         <section id="lpz" class="dep_no_sel">
             <ul class="mdl-list">
                 <% while(i<= cli.length-1 && cli[i].ciudad == "La Paz"){ %>
-                <li class="mdl-list__item mdl-list__item--two-line <%= GPS_I(i) %>">
+                <li class="mdl-list__item mdl-list__item--two-line <%= GPS_I(i,cli) %>">
                     <span class="mdl-list__item-primary-content" onclick="irficha('<%= cli[i]._id %>')">
                         <span><%= cli[i].nombre %></span>
                         <span class="mdl-list__item-sub-title"><%= cli[i].direccion %></span>
                     </span>
-                    <% if(GPS_I(i)=="incorrecto"){ %>
+                    <% if(GPS_I(i,cli)=="incorrecto"){ %>
                     <span> <i class="material-icons" onclick="verdistancia('<%=cli[i].vitacora[ cli[i].vitacora.length-1 ].GPS[0]%>','<%=cli[i].vitacora[ cli[i].vitacora.length-1 ].GPS[1]%>','<%=cli[i].GPS[0] %>','<%=cli[i].GPS[1] %>')">person_pin_circle</i> </span>
                     <% } %>
                 </li>
@@ -52,7 +52,7 @@
 </body>
 </html>
 <% 
-function GPS_I(i){
+function GPS_I(i,cli){
     var diflat = cli[i].GPS[0] - cli[i].vitacora[ cli[i].vitacora.length-1 ].GPS[0]
     var diflng = cli[i].GPS[1] - cli[i].vitacora[ cli[i].vitacora.length-1 ].GPS[1]
     if(diflat >= -0.008 && diflat <= 0.008 && diflng >= -0.008 && diflng <= 0.008 ){
