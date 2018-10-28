@@ -12,7 +12,6 @@
     <title>Document</title>
 </head>
 <body>
-    <% console.log(cli.ultima_visita) %>
     <div class="contenedor">
         <header>
             <div class="cont_row">
@@ -90,23 +89,23 @@
                         <tbody>
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">Red Bull</td>
-                                <td><%= precioprod(0) %></td>
+                                <td><%= precioprod(0,cli) %></td>
                             </tr>
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">Rush</td>
-                                <td><%= precioprod(1) %></td>
+                                <td><%= precioprod(1,cli) %></td>
                             </tr>
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">Ciclon</td>
-                                <td><%= precioprod(2) %></td>
+                                <td><%= precioprod(2,cli) %></td>
                             </tr>
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">Black</td>
-                                <td><%= precioprod(3) %></td>
+                                <td><%= precioprod(3,cli) %></td>
                             </tr>
                             <tr>
                                 <td class="mdl-data-table__cell--non-numeric">Monster</td>
-                                <td><%= precioprod(4) %></td>
+                                <td><%= precioprod(4,cli) %></td>
                             </tr>
                         </tbody>
                     </table>
@@ -175,6 +174,7 @@
 </html>
 <%
 function ultima_visita(cli){
+    console.log(cli);
     var fecha = cli.ultima_visita;
     var dia = fecha.getDate();
     var mes = fecha.getMonth() + 1;
@@ -188,7 +188,7 @@ function visita(pos){
     var year = fecha.getFullYear();
     return dia+"/"+mes+"/"+year;
 }
-function precioprod(pos){
+function precioprod(pos,cli){
     if(cli.productos[pos].P_precio>0){
         return cli.productos[pos].P_precio;
     }else{
