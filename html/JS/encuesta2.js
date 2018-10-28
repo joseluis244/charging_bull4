@@ -40,4 +40,8 @@ navigator.geolocation.getCurrentPosition(function(Position){
     GPS[1] = Position.coords.longitude;
     GPS[2] = Position.coords.accuracy;
     document.getElementById("boton_encuesta").disabled = false;
+},function(error){
+    if(error.code == 1){
+        document.getElementById("GPS_error").style.display = "flex"
+    }
 })

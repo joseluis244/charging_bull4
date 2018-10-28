@@ -19,7 +19,7 @@
         </span>
         <input type="text" onkeyup="buscar(this.value)" placeholder="Buscar">
     </div>
-    <div id="Lista_clientes">
+    <div id="Lista_clientes" style="margin-top: 40px">
         <ul class="mdl-list" id="lista_clientes">
             <% for(i=0;i <= cli.length-1;i++){ %>
                 <li class="mdl-list__item lista_borde mdl-list__item--two-line" onclick="vercliente(this,'<%= cli[i]._id %>')">

@@ -12,6 +12,7 @@ function RGET (app,passport) {
         res.redirect("/login")
     })
     app.get("/main",isLoggedIn, function (req, res) {
+        console.log(req.user.tipo)
         res.render("main.ejs",{user:req.user})
     })
     app.get("/login",function(req,res){
@@ -27,6 +28,12 @@ function RGET (app,passport) {
             })
         }
 
+    })
+    app.get("/usrdash",function(req,res){
+        console.log("aaa")
+            clientes.find({ "ciudad": req.user.ciudad }, {}, { sort: { _id: -1 },limit:30}, function (err, cli) {
+                res.render("lista.ejs", { cli: cli });
+            })
     })
     app.get("/lista/*",isLoggedIn,function(req,res){
         var parametro = req.params[0];
@@ -51,6 +58,12 @@ function RGET (app,passport) {
     app.get("/registrar",isLoggedIn,function(req,res){
         res.sendfile("views/registro.html");
     })
+    app.get("/corregir_reg",function(req,res){
+        clientes.findById(req.param("clid"),{ "contacto": 1, "tipo": 1, "direccion": 1, "ciudad": 1, "nombre": 1, "cli_id": 1},function(err,cli){
+            //console.log(cli);
+            res.render("reg_correct.ejs",{cli:cli});
+        })
+    })
     app.get("/ficha",isLoggedIn,function(req,res){
         var id = req.param("clid");
         clientes.findById(id,function(err,cli){
@@ -61,6 +74,11 @@ function RGET (app,passport) {
     app.get("/encuesta",isLoggedIn,function(req,res){
         clientes.findById(req.param("clid"),{tipo:1},function(err,cli){
             res.render("encuesta.ejs",{cli:cli});
+        })
+    })
+    app.get("/corregir_enc",function(req,res){
+        clientes.findById(req.param("clid"),{ "materiales": 1, "productos": 1, "comentario": 1, "distribuidor": 1, "distribuye": 1, "frio": 1, "share": 1,"tipo":1, "vitacora": 1},function(err,cli){
+            res.render("corregir_enc.ejs",{cli:cli});
         })
     })
     app.get("/excel",isLoggedIn,function(req,res){
@@ -100,6 +118,10 @@ function RGET (app,passport) {
     })
     app.get("/succes",isLoggedIn,function(req,res){res.send("/main")})
     app.get("/fail",function(req,res){res.send("error")})
+    app.get("/loguot",function(req,res){
+        req.logout();
+        res.redirect('/');
+    })
 }
 function RPOST(app,passport) {
 
@@ -169,6 +191,52 @@ function RPOST(app,passport) {
         //N_cleinte.save(function(err){});
         Cliente = N_cleinte;
         res.send(Cliente._id);
+    })
+    app.post("/corregir_datos",function(req,res){
+        var reeq = req.body.datos.split(",");
+        clientes.update({_id:reeq[0]},{
+            cli_id:reeq[1],
+            nombre:reeq[2],
+            ciudad:reeq[4],
+            direccion:reeq[3],
+            tipo:reeq[5],
+            "contacto.0.C_nombre":reeq[6],
+            "contacto.0.C_dato":reeq[7]
+        },function(){res.send(reeq[0])})
+    })
+    app.post("/corregir_encuesta",function(req,res){
+        let id = req.body.datos.split(",")[0];
+        let V_id = req.body.datos.split(",")[1];
+        clientes.updateOne({_id:id},{
+            "productos.0.P_precio":req.body.precios.split(",")[0],
+            "productos.1.P_precio":req.body.precios.split(",")[1],
+            "productos.2.P_precio":req.body.precios.split(",")[2],
+            "productos.3.P_precio":req.body.precios.split(",")[3],
+            "productos.4.P_precio":req.body.precios.split(",")[4],
+            "materiales.0.L_material":req.body.coolers.split(","),
+            "materiales.1.L_material":req.body.visi.split(","),
+            "distribuye":req.body.datos.split(",")[2],
+            "distribuidor":req.body.datos.split(",")[3],
+            "frio":req.body.datos.split(",")[4],
+            "comentario":req.body.datos.split(",")[5],
+            "share.redbull":req.body.share.split(",")[0],
+            "share.otro":req.body.share.split(",")[1]
+        },function(){})
+        clientes.updateOne({_id:id,"vitacora._id":V_id},{
+            "vitacora.$.productos.0.P_precio":req.body.precios.split(",")[0],
+            "vitacora.$.productos.1.P_precio":req.body.precios.split(",")[1],
+            "vitacora.$.productos.2.P_precio":req.body.precios.split(",")[2],
+            "vitacora.$.productos.3.P_precio":req.body.precios.split(",")[3],
+            "vitacora.$.productos.4.P_precio":req.body.precios.split(",")[4],
+            "vitacora.$.materiales.0.L_material":req.body.coolers.split(","),
+            "vitacora.$.materiales.1.L_material":req.body.visi.split(","),
+            "vitacora.$.distribuye":req.body.datos.split(",")[2],
+            "vitacora.$.distribuidor":req.body.datos.split(",")[3],
+            "vitacora.$.comentario":req.body.datos.split(",")[5],
+            "vitacora.$.share.redbull":req.body.share.split(",")[0],
+            "vitacora.$.share.otro":req.body.share.split(",")[1]
+        },function(){})
+        res.send("/ficha?clid="+id)
     })
     app.post("/galeriafotos",function(req,res){
         var id = req.body.id;

@@ -321,7 +321,7 @@
                         <span>Tomar Foto</span>
                     </div>
                     <div id="botones_foto">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--red-900">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-color--red-900" onclick="document.location.href='/ficha?clid='+document.location.href.split('?clid=')[1]">
                             Sin Foto
                         </button>
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" style="display: none" onclick="subir_foto(this,'<%= cli._id %>')">
@@ -331,6 +331,11 @@
                 </div>
             </div>
         </main>
+        <section id="GPS_error" style="display: none">
+            <span class="logo"><i class="material-icons">info</i></span>
+            <span class="msg">No tiene permisos de GPS</span>
+            <span class="sug"><a href="https://support.google.com/chrome/answer/114662?co=GENIE.Platform%3DDesktop&hl=es" target="_blank">Mas informacion...</a></span>
+        </section>
         <script src="./JS/encuesta2.js"></script>
         <script src="./JS/encuesta.js"></script>
     </div>

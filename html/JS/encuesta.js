@@ -49,11 +49,11 @@ function asignar_precio1(pos,este){
 }
 function frio(este){
     if(este.checked){
-        vende_frio = "si";
+        vende_frio = true;
         document.getElementById("frio_lab").innerHTML = "Si";
     }
     else{
-        vende_frio = "no";
+        vende_frio = false;
         document.getElementById("frio_lab").innerHTML = "No";
     }
 }
@@ -97,16 +97,18 @@ function subir_foto(este,id){
     document.getElementById("mensajes_foto").getElementsByClassName("mdl-spinner")[0].style.display = "inline-block";
     jic.upload(img_tar, "/foto", "foto", id+"$%"+fecha, function (res) {
         if(res == "asd"){
-            location.href = "/main"
+            location.href = "/ficha?clid="+document.location.href.split("?clid=")[1];
         }
     })
     este.disabled = "true"
-    console.log("Subiendo")
 }
 function setshare(pos,este){
     share[pos]=este.value;
+<<<<<<< HEAD
 }
 function cargarshare(){
     share[0]=0;
     share[1]=0;
+=======
+>>>>>>> a2e7c86429e6822340369997a76487beb1520508
 }

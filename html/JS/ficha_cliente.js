@@ -21,4 +21,10 @@ function cargargaleria(id){
 function verdistancia(latV,lngV,latO,lngO){
     window.open("https://www.google.com/maps/dir/?api=1&origin="+latV+","+lngV+"&destination="+latO+","+lngO);
 }
+function cerregir(id){
+    window.location.href = "/corregir_reg?clid="+id;
+}
+function corregir_encuesta(id){
+    window.location.href = "/corregir_enc?clid="+id;
+}
 //$("#Galeria").post("./galeria.html")

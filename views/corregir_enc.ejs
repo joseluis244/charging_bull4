@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="./CSS/MDL.css">
+    <link rel="stylesheet" href="./CSS/encuesta.css">
+    <title>Encuesta</title>
+</head>
+<body>
+    <div class="contenedor">
+        <header>
+            <span style="margin-right: 10px; cursor: pointer;" onclick="window.history.back()">
+                <i class="material-icons">
+                    chevron_left
+                </i>
+            </span>
+            <span><h5 style="margin-top: 15px">Encuesta</h5></span>
+        </header>
+        <main>
+            <div id="pagina-1">
+                <div class="seccion seccion_principal">
+                    <div class="titulo">Vende energizante</div>
+                    <div class="contenido">
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-1">
+                            <input type="checkbox" id="switch-1" class="mdl-switch__input" onclick="vende(this)" <%= cli.distribuye?"checked":"" %>>
+                            <span class="mdl-switch__label" id="vende_lab"><%= cli.distribuye?"Si":"No" %></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="seccion seccion_secundaria">
+                    <div class="titulo">Distribuidor de Red Bull</div>
+                    <div class="contenido distribuye_contenido">
+                        <select name="distribuye" id="distribuidor" onchange="distribuidor(this)">
+                            <option value="D&amp;M" <%= cli.distribuidor == "D&M"?"selected":"" %>>D&amp;M</option>
+
+                            <option value="Promabol" <%= cli.distribuidor == "Promabol"?"selected":"" %>>Promabol</option>
+            
+                            <option value="Dhotar" <%= cli.distribuidor == "Dhotar"?"selected":"" %>>Dhotar</option>
+            
+                            <option value="Delizia" <%= cli.distribuidor == "Delizia"?"selected":"" %>>Delizia</option>
+
+                            <option value="Etix Distribuidora" <%= cli.distribuidor == "Etix Distribuidora"?"selected":"" %>>Etix Distribuidora</option>
+            
+                            <option value="Distribuidora Flores" <%= cli.distribuidor == "Distribuidora Flores"?"selected":"" %>>Distribuidora Flores</option>
+            
+                            <option value="otro" <%- otro(cli.distribuidor)?"selected":""%>>Otro</option>
+                        </select>
+                        <input type="text" placeholder="Nombre Distribuidor" onkeyup="distribuidor1(this)" id="nombre_distribuidor_nuevo" value="<%= cli.distribuidor%>"
+                            style=<%=otro(cli.distribuidor)?"display:block":"display:none"%>>
+                    </div>
+                </div>
+                <div class="seccion seccion_secundaria">
+                    <div class="titulo">Precio de venta(Bs.)</div>
+                    <div class="contenido precio_contenido">
+                        <div class="bebida">
+                            <div class="nombre">Red Bull</div>
+                            <div style="display: flex; align-items: center"><input type="number" placeholder="Precio" onkeyup="asignar_precio1(0,this)" value="<%= cli.productos[0].P_precio %>"></div>
+                        </div>
+                        <div class="bebida">
+                            <div class="nombre">Rush</div>
+                            <div style="display: flex; align-items: center"><input type="text" placeholder="Precio" onkeyup="asignar_precio1(1,this)" value="<%= cli.productos[1].P_precio %>"></div>
+                        </div>
+                        <div class="bebida">
+                            <div class="nombre">Ciclon 500 ML</div>
+                            <div style="display: flex; align-items: center"><input type="number" placeholder="Precio" onkeyup="asignar_precio1(2,this)" value="<%= cli.productos[2].P_precio %>"></div>
+                        </div>
+                        <div class="bebida">
+                            <div class="nombre">Black</div>
+                            <div style="display: flex; align-items: center"><input type="number" placeholder="Precio" onkeyup="asignar_precio1(3,this)" value="<%= cli.productos[3].P_precio %>"></div>
+                        </div>
+                        <div class="bebida">
+                            <div class="nombre">Monster</div>
+                            <div style="display: flex; align-items: center"><input type="number" placeholder="Precio" onkeyup="asignar_precio1(4,this)" value="<%= cli.productos[4].P_precio %>"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="seccion seccion_secundaria">
+                    <div class="titulo">Producto Frio</div>
+                    <div class="contenido">
+                        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
+                            <input type="checkbox" id="switch-2" class="mdl-switch__input" onclick="frio(this)" <%= cli.frio?"checked":"" %>>
+                            <span class="mdl-switch__label" id="frio_lab">Si</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="seccion seccion_secundaria">
+                    <div class="titulo">Coolers</div>
+                    <div class="contenido lista_cooler">
+                        <span class="cooler_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cooler-1">
+                                <input type="checkbox" id="cooler-1" class="mdl-checkbox__input" onclick="asignarcooler(this,0)" <% if(cooler('Propio')){ %> checked <% } %> >
+                                <span class="mdl-checkbox__label">Propio</span>
+                            </label>
+                        </span>
+                        <span class="cooler_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cooler-2">
+                                <input type="checkbox" id="cooler-2" class="mdl-checkbox__input" onclick="asignarcooler(this,1)" <% if(cooler('Baby Cooler')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Baby Cooler</span>
+                            </label>
+                        </span>
+                        <span class="cooler_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cooler-3">
+                                <input type="checkbox" id="cooler-3" class="mdl-checkbox__input" onclick="asignarcooler(this,2)" <% if(cooler('Slim Cooler')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Slim Cooler</span>
+                            </label>
+                        </span>
+                        <span class="cooler_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cooler-4">
+                                <input type="checkbox" id="cooler-4" class="mdl-checkbox__input" onclick="asignarcooler(this,3)" <% if(cooler('Can Cooler')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Can Cooler</span>
+                            </label>
+                        </span>
+                        <span class="cooler_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cooler-5">
+                                <input type="checkbox" id="cooler-5" class="mdl-checkbox__input" onclick="asignarcooler(this,4)" <% if(cooler('Equipo de la competencia')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Equipo de la competencia</span>
+                            </label>
+                        </span>
+                        <span class="cooler_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cooler-6">
+                                <input type="checkbox" id="cooler-6" class="mdl-checkbox__input" onclick="asignarcooler(this,5)" <% if(cooler('Fast Lane Open')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Fast Lane Open</span>
+                            </label>
+                        </span>
+                        <span class="cooler_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cooler-7">
+                                <input type="checkbox" id="cooler-7" class="mdl-checkbox__input" onclick="asignarcooler(this,6)" <% if(cooler('Small Open Front')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Small Open Front</span>
+                            </label>
+                        </span>
+                        <span class="cooler_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cooler-8">
+                                <input type="checkbox" id="cooler-8" class="mdl-checkbox__input" onclick="asignarcooler(this,7)" <% if(cooler('Mega Glass Door')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Mega Glass Door</span>
+                            </label>
+                        </span>
+                        <span class="cooler_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cooler-9">
+                                <input type="checkbox" id="cooler-9" class="mdl-checkbox__input" onclick="asignarcooler(this,8)" <% if(cooler('Slim Fast Lane')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Slim Fast Lane</span>
+                            </label>
+                        </span>
+                        <span class="cooler_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="cooler-10">
+                                <input type="checkbox" id="cooler-10" class="mdl-checkbox__input" onclick="asignarcooler(this,9)" <% if(cooler('Refuel Cooler')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Refuel Cooler</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+                <div class="seccion seccion_secundaria">
+                    <div class="titulo">Visibility</div>
+                    <div class="contenido lista_visibility">
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-1">
+                                <input type="checkbox" id="visibility-1" class="mdl-checkbox__input" onclick="asignarvisibility(this,0)" <% if(visi('Colgante')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Colgante</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-2">
+                                <input type="checkbox" id="visibility-2" class="mdl-checkbox__input" onclick="asignarvisibility(this,1)" <% if(visi('Sticker de lata')){ %> checked <% } %> >
+                                <span class="mdl-checkbox__label">Sticker de lata</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-3">
+                                <input type="checkbox" id="visibility-3" class="mdl-checkbox__input" onclick="asignarvisibility(this,2)" <% if(visi('Marca Precio')){ %> checked <% } %> >
+                                <span class="mdl-checkbox__label">Marca Precio</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-4">
+                                <input type="checkbox" id="visibility-4" class="mdl-checkbox__input" onclick="asignarvisibility(this,3)"<% if(visi('Cartoon')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Cartoon</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-5">
+                                <input type="checkbox" id="visibility-5" class="mdl-checkbox__input" onclick="asignarvisibility(this,4)"<% if(visi('Lata Aluminio')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Lata Aluminio</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-6">
+                                <input type="checkbox" id="visibility-6" class="mdl-checkbox__input" onclick="asignarvisibility(this,5)"<% if(visi('Sticky shlef')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Sticky shlef</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-7">
+                                <input type="checkbox" id="visibility-7" class="mdl-checkbox__input" onclick="asignarvisibility(this,6)"<% if(visi('Carrileras')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Carrileras</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-8">
+                                <input type="checkbox" id="visibility-8" class="mdl-checkbox__input" onclick="asignarvisibility(this,7)"<% if(visi('Two Cans')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Two Cans</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-9">
+                                <input type="checkbox" id="visibility-9" class="mdl-checkbox__input" onclick="asignarvisibility(this,8)"<% if(visi('Parasite SC')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Parasite SC</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-10">
+                                <input type="checkbox" id="visibility-10" class="mdl-checkbox__input" onclick="asignarvisibility(this,9)"<% if(visi('Parasite 4Pack')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Parasite 4Pack</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-11">
+                                <input type="checkbox" id="visibility-11" class="mdl-checkbox__input" onclick="asignarvisibility(this,10)"<% if(visi('Dispensador Lata')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Dispensador Lata</span>
+                            </label>
+                        </span>
+                        <span class="visi_block">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="visibility-12">
+                                <input type="checkbox" id="visibility-12" class="mdl-checkbox__input" onclick="asignarvisibility(this,11)"<% if(visi('Rack')){ %> checked <% } %>>
+                                <span class="mdl-checkbox__label">Rack</span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+                <% if(cli.tipo == "Famacia" || cli.tipo == "Otro Impulso"){ %>
+                <div class="seccion seccion_secundaria">
+                    <div class="titulo"># de caras</div>
+                    <div class="contenido">
+                        <div class="share_block">
+                            <span style="width: 60px; display: inline-block">Red Bull</span>
+                            <input type="number" onkeyup="setshare(0,this)" value="<%= cli.share.redbull %>">
+                        </div>
+                        <div style="margin-top: 10px;" class="share_block">
+                            <span style="width: 60px; display: inline-block">Otras</span>
+                            <input type="number" onkeyup="setshare(1,this)" value="<%= cli.share.otro %>">
+                        </div>                       
+                    </div>
+                </div>
+                <% } %>
+                <div class="seccion seccion_principal">
+                    <div class="titulo">Comentario</div>
+                    <div class="contenido">
+                       <textarea style="width: 100%" name="comentario" id="comentario" cols="30" rows="2" onkeyup="escribircomentario(this)"><%= cli.comentario %></textarea>
+                    </div>
+                </div>
+                <div id="botonera_encuesta" style="display: grid; padding-left: 20px; padding-right: 20px; margin-bottom: 20px">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="boton_encuesta" onclick="guardar_datos('<%= cli._id %>')">
+                        Corregir
+                    </button>
+                </div>
+            </div>
+        </main>
+        
+    </div>
+</body>
+<script>
+    var V_id = "<%= cli.vitacora[cli.vitacora.length-1]._id%>"
+</script>
+<script src="./JS/corregir_enc.js"></script>
+</html>
+<%
+function otro(sel){
+    if(sel == "D&M" || sel == "Promabol" || sel == "Dhotar" || sel == "Delizia" || sel == "Etix Distribuidora" || sel == "Distribuidora Flores"){
+        return false
+    }else{
+        return true
+    }
+}
+function cooler(val){
+    for(i=0;i<=cli.materiales[0].L_material.length-1;i++){
+        if(val == cli.materiales[0].L_material[i]){
+            return true
+        }
+    }
+    return false
+}
+
+function visi(val){
+    for(i=0;i<=cli.materiales[1].L_material.length-1;i++){
+        if(val == cli.materiales[1].L_material[i]){
+            return true
+        }
+    }
+    return false
+}
+
+%>

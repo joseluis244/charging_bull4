@@ -41,7 +41,6 @@ function guardar_servidor(){
 navigator.geolocation.getCurrentPosition(function(Position){
     GPS[0] = Position.coords.latitude;
     GPS[1] = Position.coords.longitude;
-    console.log(GPS);
     document.getElementById("loader").style.display = "none";
     document.getElementById("mensaje_estado").innerHTML = "Posicion GPS Guardada";
     document.getElementsByClassName("mensajes")[0].style.display ="block";
