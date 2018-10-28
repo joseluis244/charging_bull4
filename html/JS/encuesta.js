@@ -105,5 +105,8 @@ function subir_foto(este,id){
 }
 function setshare(pos,este){
     share[pos]=este.value;
-    console.log(share)
+}
+function cargarshare(){
+    share[0]=0;
+    share[1]=0;
 }
