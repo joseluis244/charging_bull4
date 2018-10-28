@@ -1,4 +1,5 @@
 //const express = require("express");
+"use strict";
 const Excel = require('exceljs');
 //const mongoose = require("mongoose");
 //mongoose.connect("mongodb://127.0.0.1/RB2");
@@ -58,14 +59,14 @@ var D_tabla_comlpeta = function (callback) {
         { header: 'Comentarios', key: 'comen', width: 60 },
     ];
     clientes.find({ $or: [{ "distribuye": true }, { "distribuye": false }] }, { "frio": 0, "__v": 0, "contacto": 0, "GPS": 0 }, function (err, cli) {
-        for (i = 0; i <= cli.length - 1; i++) {
+        for (let i = 0; i <= cli.length - 1; i++) {
             let id = cli[i].cli_id;
             let nombre = cli[i].nombre;
             let ciudad = cli[i].ciudad;
             let direccion = cli[i].direccion;
             let tipo = cli[i].tipo;
             //let comen = cli[i].comentario;
-            for (j = 0; j <= cli[i].vitacora.length - 1; j++) {
+            for (let j = 0; j <= cli[i].vitacora.length - 1; j++) {
                 let distribuye = (cli[i].vitacora[j].distribuye == true ? "Si" : "No");
                 let distribuidor = cli[i].vitacora[j].distribuidor;
                 let fecha = cli[i].vitacora[j].fecha;
@@ -220,14 +221,14 @@ var D_tabla_reqguion = function (callback) {
         { header: 'Comentarios', key: 'comen', width: 60 },
     ];
     clientes.find({ $or: [{ "distribuye": true }, { "distribuye": false }] }, { "frio": 0, "__v": 0, "contacto": 0, "GPS": 0 },{sort:{ "ciudad": -1}}, function (err, cli) {
-        for (i = 0; i <= cli.length - 1; i++) {
+        for (let i = 0; i <= cli.length - 1; i++) {
             let id = cli[i].cli_id;
             let nombre = cli[i].nombre;
             let ciudad = cli[i].ciudad;
             let direccion = cli[i].direccion;
             let tipo = cli[i].tipo;
             //let comen = cli[i].comentario;
-            for (j = 0; j <= cli[i].vitacora.length - 1; j++) {
+            for (let j = 0; j <= cli[i].vitacora.length - 1; j++) {
                 let distribuye = (cli[i].vitacora[j].distribuye == true ? "Si" : "No");
                 let distribuidor = cli[i].vitacora[j].distribuidor;
                 let fecha = cli[i].vitacora[j].fecha;
@@ -435,7 +436,7 @@ var D_tabla_mes = function (callback) {
     let fechaI = new Date(year,mes,1);
     let fechaF = new Date(year,mes,31);
     clientes.find({ $or: [ { "distribuye": true }, { "distribuye": false } ], "ultima_visita": { $gte: fechaI, $lte: fechaF } }, { "frio": 0, "__v": 0, "contacto": 0, "GPS": 0 },{sort:{ "ciudad": -1, "ultima_visita": 1}}, function (err, cli) {
-        for (i = 0; i <= cli.length - 1; i++) {
+        for (let i = 0; i <= cli.length - 1; i++) {
             let id = cli[i].cli_id;
             let nombre = cli[i].nombre;
             let ciudad = cli[i].ciudad;
