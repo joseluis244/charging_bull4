@@ -156,7 +156,7 @@
             <div class="ventana" id="Visitas">
                 <ul class="mdl-list">
                     <% for(i=cli.vitacora.length-1;i>=0;i--){ %>
-                        <li class="mdl-list__item <%= estado(i) %>"> <%= visita(i) %> <span></span> <%if( comparacion(cli.vitacora[i].fecha) ){ %> <span style="width: 50px;" onclick="corregir_encuesta('<%= cli._id %>')"><i class="material-icons">create</i></span> <% } %> <% if(estado(i) == "incorrecto"){ %> <i class="material-icons" onclick="verdistancia('<%=cli.vitacora[i].GPS[0]%>','<%=cli.vitacora[i].GPS[1]%>','<%=cli.GPS[0] %>','<%=cli.GPS[1] %>')">person_pin_circle</i> <% } %> </li>
+                        <li class="mdl-list__item <%= estado(i,cli) %>"> <%= visita(i,cli) %> <span></span> <%if( comparacion(cli.vitacora[i].fecha) ){ %> <span style="width: 50px;" onclick="corregir_encuesta('<%= cli._id %>')"><i class="material-icons">create</i></span> <% } %> <% if(estado(i,cli) == "incorrecto"){ %> <i class="material-icons" onclick="verdistancia('<%=cli.vitacora[i].GPS[0]%>','<%=cli.vitacora[i].GPS[1]%>','<%=cli.GPS[0] %>','<%=cli.GPS[1] %>')">person_pin_circle</i> <% } %> </li>
                     <% } %>
                 </ul>
             </div>
@@ -181,7 +181,7 @@ function ultima_visita(cli){
     var year = fecha.getFullYear();
     return dia+"/"+mes+"/"+year;
 }
-function visita(pos){
+function visita(pos,cli){
     var fecha = cli.vitacora[pos].fecha;
     var dia = fecha.getDate();
     var mes = fecha.getMonth() + 1;
@@ -195,7 +195,7 @@ function precioprod(pos,cli){
         return "No vende";
     }
 }
-function estado(pos){
+function estado(pos,cli){
     if(cli.vitacora[pos].GPS.length > 0){
         var diflat = cli.vitacora[pos].GPS[0] - cli.GPS[0];
         var diflng = cli.vitacora[pos].GPS[1] - cli.GPS[1];
