@@ -76,7 +76,7 @@
                         <span class="datos_venta_key">Vende Energizante:</span><span><%=(cli.distribuye == true)?"Si":"No"%></span>
                     </div>
                     <div class="cont2_dato">
-                        <span class="datos_venta_key">Ultima visita:</span><span><%=ultima_visita()%></span>
+                        <span class="datos_venta_key">Ultima visita:</span><span><%=ultima_visita(cli)%></span>
                     </div>
                 </div>
                 <div class="cont_tabla">
@@ -174,7 +174,7 @@
 </body>
 </html>
 <%
-function ultima_visita(){
+function ultima_visita(cli){
     var fecha = cli.ultima_visita;
     var dia = fecha.getDate();
     var mes = fecha.getMonth() + 1;
