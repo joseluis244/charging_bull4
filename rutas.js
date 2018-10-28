@@ -68,7 +68,6 @@ function RGET (app,passport) {
     app.get("/ficha",isLoggedIn,function(req,res){
         var id = req.param("clid");
         clientes.findById(id,function(err,cli){
-            console.log(cli)
             res.render("ficha_cliente.ejs",{cli,cli});
         })
     })
