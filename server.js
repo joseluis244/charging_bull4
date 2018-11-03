@@ -19,8 +19,7 @@ AUpassport.AUpassport(passport);
 //use
 app.use(favicon(__dirname+"/html/IMG/redbull-icon.png"));
 app.use("/",express.static("html"));
-app.use("/upload",express.static("upload"));
-app.use("/uploads",express.static("uploads"));
+app.use("/upload",express.static("uploads"));
 app.use("/node_modules",express.static("node_modules"));
 app.use("/cluster",express.static("cluster"));
 app.use(session({secret: 'epistemologia'}));

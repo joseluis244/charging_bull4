@@ -3,5 +3,4 @@ uploads/*.jpg
 uploads/*.jpeg
 TEMP/*.xlsx
 upload/*.jpg
-LOG/auth.txt
-LOG/auth.txt
+LOG/*.txt

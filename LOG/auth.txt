@@ -55,3 +55,5 @@ Mon Oct 22 2018 14:30:34 GMT-0400 (-04) Authenticacion Correcta
 Mon Oct 22 2018 14:35:49 GMT-0400 (-04) Authenticacion Correcta
 Mon Oct 22 2018 14:41:59 GMT-0400 (-04) Authenticacion Correcta
 >>>>>>> a2e7c86429e6822340369997a76487beb1520508
+Sun Oct 28 2018 17:01:29 GMT-0400 (GMT-04:00) Authenticacion Correcta
+Sun Oct 28 2018 17:30:11 GMT-0400 (GMT-04:00) Authenticacion Correcta
