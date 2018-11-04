@@ -1,6 +1,6 @@
 
 const multer = require("multer");
-const upload = multer({dest: './upload/'});
+const upload = multer({dest: './uploads/'});
 const fs = require("fs");
 const dashm = require("./modulos/dash");
 const clientes = require("./models/clientes");
