@@ -158,6 +158,7 @@ function RPOST(app,passport) {
         }
     })
     app.post("/foto",upload.single("foto"),function(req,res,next){
+        console.log("llega el post")
         clientes.update({_id:req.file.originalname.split("$%")[0]},{$push:{fotos:{fecha:req.file.originalname.split("$%")[1],nombre:req.file.filename+".jpg"}}},function(){})
         fs.rename(req.file.path,renombre(req.file),function(){})
         res.send("asd")
