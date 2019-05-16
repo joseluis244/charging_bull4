@@ -49,6 +49,7 @@ passport.serializeUser(function(user, done) {
 
 // used to deserialize the user
 passport.deserializeUser(function(id, done) {
+    console.log(id)
     User.findById(id, function(err, user) {
         done(err, user);
     });
@@ -130,7 +131,6 @@ app.get('/app/isauth',(req,res)=>{
     //res.send(req.user)
 })
 app.get('/app/correcto',(req,res)=>{
-    console.log(req.user)
     res.send({estatus:true,usuario:req.user})
 })
 app.get('/app/incorrecto',(req,res)=>{
