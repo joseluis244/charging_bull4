@@ -13,7 +13,6 @@ const cookieParser =require('cookie-parser');
 const session = require('express-session');
 const xls = require('./xlsx3');
 const json2xls      = require('json2xls');
-const clientes = require('./models/clientes');
 
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -25,24 +24,25 @@ const fs = require('fs');
 const nuevocliente = require('./nuevocliente');
 
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json())
 app.use(cookieParser());
-app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(json2xls.middleware);
 
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
 
+passport.deserializeUser(function (id, done) {
+    usuario.findById(id, function (err, user) {
+        done(err, user);
+    });
+});
 
-
-
-
-mongoose.connect('mongodb://localhost:27017/RB2', {useNewUrlParser: true});
-
-
-
-passport.use('local',new LocalStrategy(
+passport.use(new LocalStrategy(
     (username, password, done)=>{
         usuario.findOne({ "username":username, "password":password,"estado":{ $gte: 2.0 } },(err,usuario)=>{
             if(!usuario){
@@ -53,21 +53,12 @@ passport.use('local',new LocalStrategy(
     }
 ))
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});
-
-// used to deserialize the user
-passport.deserializeUser(function(id, done) {
-    console.log(id)
-    User.findById(id, function(err, user) {
-        done(err, user);
-    });
-});
 
 
 
 
+mongoose.connect('mongodb://localhost:27017/RB2', {useNewUrlParser: true});
+const clientes = require('./models/clientes');
 
 var dashboard;
 const das = require('./dashboard');
@@ -159,11 +150,12 @@ app.get("/app/download",(req,res)=>{
 })
 
 
-app.post('/app/login',passport.authenticate('local',{
+app.post('/app/login',
+passport.authenticate('local',{
         successRedirect: '/app/correcto',
         failureRedirect: '/app/incorrecto',
     }
-    )
+)
 )
 
 
