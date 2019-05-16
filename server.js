@@ -13,6 +13,7 @@ const cookieParser =require('cookie-parser');
 const session = require('express-session');
 const xls = require('./xlsx3');
 const json2xls      = require('json2xls');
+const clientes = require('./models/clientes');
 
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -32,7 +33,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(json2xls.middleware);
 
-passport.use(new LocalStrategy(
+
+
+
+
+
+mongoose.connect('mongodb://localhost:27017/RB2', {useNewUrlParser: true});
+
+
+
+passport.use('local',new LocalStrategy(
     (username, password, done)=>{
         usuario.findOne({ "username":username, "password":password,"estado":{ $gte: 2.0 } },(err,usuario)=>{
             if(!usuario){
@@ -58,9 +68,6 @@ passport.deserializeUser(function(id, done) {
 
 
 
-
-mongoose.connect('mongodb://localhost:27017/RB2', {useNewUrlParser: true});
-const clientes = require('./models/clientes');
 
 var dashboard;
 const das = require('./dashboard');
