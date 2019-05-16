@@ -33,6 +33,7 @@ app.use(passport.session());
 app.use(json2xls.middleware);
 
 passport.serializeUser(function (user, done) {
+    console.log(user.id)
     done(null, user.id);
 });
 
@@ -46,7 +47,6 @@ passport.deserializeUser(function (id, done) {
 passport.use(new LocalStrategy(
     (username, password, done)=>{
         usuario.findOne({ "username":username, "password":password,"estado":{ $gte: 2.0 } },(err,usuario)=>{
-            console.log(usuario)
             if(!usuario){
                 return done(null,false)
             }
