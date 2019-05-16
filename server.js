@@ -33,7 +33,7 @@ app.use(passport.session());
 app.use(json2xls.middleware);
 
 passport.serializeUser(function (user, done) {
-    console.log(user.id)
+    console.log(user)
     done(null, user.id);
 });
 
