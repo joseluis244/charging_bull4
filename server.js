@@ -32,18 +32,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(json2xls.middleware);
 
-passport.serializeUser(function (user, done) {
-    console.log(user.id)
-    done(null, user.id);
-});
-
-passport.deserializeUser(function (id, done) {
-    console.log(id)
-    usuario.findById(id, function (err, user) {
-        done(err, user);
-    });
-});
-
 passport.use(new LocalStrategy(
     (username, password, done)=>{
         usuario.findOne({ "username":username, "password":password,"estado":{ $gte: 2.0 } },(err,usuario)=>{
@@ -54,6 +42,17 @@ passport.use(new LocalStrategy(
         })
     }
 ))
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+
+// used to deserialize the user
+passport.deserializeUser(function(id, done) {
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
 
 
 
