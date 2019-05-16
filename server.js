@@ -129,6 +129,7 @@ app.get('/app/isauth',(req,res)=>{
     //res.send(req.user)
 })
 app.get('/app/correcto',(req,res)=>{
+    console.log(req.user)
     res.send({estatus:true,usuario:req.user})
 })
 app.get('/app/incorrecto',(req,res)=>{
