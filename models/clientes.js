@@ -21,7 +21,6 @@ var ClienteSchema = mongoose.Schema({
         share:{redbull:Number,
                 otro:Number},
         ciudad: String,
-        ultima_visita:Date,
     //vitacora
         vitacora:[{
                     GPS:[],
@@ -40,6 +39,7 @@ var ClienteSchema = mongoose.Schema({
         fotos:[{
             fecha: Date,
             nombre: String
-        }]
+        }],
+        ultima_visita:Date
 },{collection : 'clientes'});
 module.exports = mongoose.model('clientes', ClienteSchema);
