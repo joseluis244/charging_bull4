@@ -149,6 +149,11 @@ app.get("/app/download",(req,res)=>{
     });
 })
 
+app.get("/app/uploads/*",(req,res)=>{
+    console.log(req.params[0])
+    res.sendfile("../charging_bull3/uploads/req.params[0]")
+})
+
 
 app.post('/app/login',
 passport.authenticate('local',{
