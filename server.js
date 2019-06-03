@@ -154,6 +154,11 @@ app.get("/app/uploads/*",(req,res)=>{
     res.sendfile("../charging_bull3/uploads/req.params[0]")
 })
 
+app.put('/app/updatecliente',(req,res)=>{
+    let actualisacion = req.body;
+    clientes.updateOne({_id:actualisacion._id},{cli_id:actualisacion.cli_id,direccion:actualisacion.direccion,tipo:actualisacion.tipo,'contacto.0.C_dato':actualisacion.contacto[0].C_dato,'contacto.0.C_nombre':actualisacion.contacto[0].C_nombre},(err)=>{},)
+})
+
 
 app.post('/app/login',
 passport.authenticate('local',{
