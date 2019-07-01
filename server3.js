@@ -24,8 +24,8 @@ const fs = require('fs');
 const nuevocliente = require('./nuevocliente');
 
 app.use(cors());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
@@ -149,16 +149,23 @@ app.get("/app/download",(req,res)=>{
     });
 })
 
+app.get("/app/uploads/*",(req,res)=>{
+    console.log(req.params[0])
+    res.sendfile("../charging_bull3/uploads/req.params[0]")
+})
+
 app.put('/app/updatecliente',(req,res)=>{
     let actualisacion = req.body;
     clientes.updateOne({_id:actualisacion._id},{cli_id:actualisacion.cli_id,direccion:actualisacion.direccion,tipo:actualisacion.tipo,'contacto.0.C_dato':actualisacion.contacto[0].C_dato,'contacto.0.C_nombre':actualisacion.contacto[0].C_nombre},(err)=>{},)
 })
 
-app.post('/app/login',passport.authenticate('local',{
+
+app.post('/app/login',
+passport.authenticate('local',{
         successRedirect: '/app/correcto',
         failureRedirect: '/app/incorrecto',
     }
-    )
+)
 )
 
 
@@ -170,13 +177,11 @@ app.post('/app/registro',async (req,res)=>{
     res.send(id_ncli)
 })
 app.post('/app/upload',upload.any(),(req,res)=>{
-    let actualizacion = new Date();
     let estado = JSON.parse(req.body.data);
     fs.renameSync(req.files[0].path,req.files[0].path+'.jpg');
     estado.fotofinal = req.files[0].filename+'.jpg';
     nuevocliente.agregarvisita(estado,req.user.nombre,true);
     res.send('listo')
-    console.log(`${req.user} ## ${actualizacion}`);
 })
 app.post('/app/sinfoto',upload.any(),(req,res)=>{
     nuevocliente.agregarvisita(req.body,req.user.nombre,false);
